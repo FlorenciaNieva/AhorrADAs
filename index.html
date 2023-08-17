@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link de Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <!-- link Font Awesome -->
+    <script src="https://kit.fontawesome.com/d0ec7b50c3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>AhorrADAs</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar has-background-primary is-spaced" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                    <h1 class="title is-size-2-desktop has-text-white">
+                        <i class="fa-solid fa-wallet mr-2"></i> AhorrADAs
+                    </h1>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary pl-2 pr-2">
+                                <strong><i class="fas fa-chart-line mr-1" aria-hidden="true"></i></strong>
+                                Balance
+                            </a>
+                            <a class="button is-primary pl-2 pr-2">
+                                <strong><i class="fa-solid fa-tag mr-1" aria-hidden="true"></i></strong>
+                                Categorías
+                            </a>
+                            <a class="button is-primary pl-2 pr-2">
+                                <strong><i class="fas fa-chart-pie mr-1" aria-hidden="true"></i></strong>
+                                Reportes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <script src="script.js"></script>
 </body>
 </html>
