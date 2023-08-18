@@ -1,0 +1,8 @@
+.image {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+img {
+    filter: opacity(80%);
+}

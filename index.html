@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <title>AhorrADAs</title>
 </head>
-<body>
+<body class="has-background-light">
     <header>
         <nav class="navbar has-background-primary is-spaced" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
@@ -50,12 +50,35 @@
     </header>
     <main>
         <section class="section">
-            <div class="container mt-6">
+            <div class="container mt-5">
                 <div class="columns is-multiline is-flex is-justify-content-center">
                     <div class="column is-flex is-flex-direction-column is-3">
                         <div class="box">
-                            <h2 class="title is-3 mb-4 has-text-weight-bold">Balance</h2>
-                            <div class="column"></div>
+                            <h2 class="title is-3 mb-6 has-text-weight-bold">Balance</h2>
+                            <div class="columns">
+                                <div class="column">
+                                    <h4 class="subtitle is-5">Ganancias</h4>
+                                </div>
+                                <div class="column">
+                                    <h4 class="subtitle is-6 has-text-right-tablet has-text-success">+$0</h4>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column mb-3">
+                                    <h4 class="subtitle is-5">Gastos</h4>
+                                </div>
+                                <div class="column">
+                                    <h4 class="subtitle is-6 has-text-right-tablet has-text-danger">-$0</h4>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
+                                    <h4 class="subtitle is-4">Total</h4>
+                                </div>
+                                <div class="column">
+                                    <h4 class="subtitle is-6 has-text-right-tablet has-text-black"><strong>$0</strong></h4>
+                                </div>
+                            </div>
                         </div>
                         <div class="box">
                             <div class="columns">
@@ -66,6 +89,61 @@
                                     <a href="#">Ocultar Filtros</a>
                                 </div>
                             </div>
+                            <div class=" p-0">
+                                <form action="#" id="formulario-filtros">
+                                    <div class="field">
+                                        <label class="label">Tipo</label>
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select id="selector-tipo">
+                                                    <option value="todos">Todos</option>
+                                                    <option value="gasto">Gasto</option>
+                                                    <option value="ganancia">Ganancia</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Categoría</label>
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select id="selector-categorias">
+                                                    <option value="todas">Todas</option>
+                                                    <option value="comida">Comida</option>
+                                                    <option value="servicios">Servicios</option>
+                                                    <option value="educacion">Educacion</option>
+                                                    <option value="salidas">Salidas</option>
+                                                    <option value="transporte">Transporte</option>
+                                                    <option value="trabajos">Trabajo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Desde</label>
+                                        <div class="control">
+                                            <div class="is-fullwidth">
+                                                <input class="input" type="date" id="input-fecha">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Ordenar por</label>
+                                        <div class="control">
+                                            <div class="select is-fullwidth">
+                                                <select id="selector-ordenar">
+                                                    <option value="mas-reciente">Más reciente</option>
+                                                    <option value="menos-reciente">Menos reciente</option>
+                                                    <option value="mayor-monto">Mayor monto</option>
+                                                    <option value="menor-monto">Menor monto</option>
+                                                    <option value="a/z">A/Z</option>
+                                                    <option value="z/a">Z/A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="column is-7">
@@ -75,7 +153,16 @@
                                     <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
                                 </div>
                                 <div class="column has-text-right-tablet">
-                                    <button class="button has-background-primary has-text-white">+ Nueva Operación</button>
+                                    <button class="button has-background-primary has-text-white">+ Nueva operación</button>
+                                </div>
+                            </div>
+                            <div class="mt-5 py-6" id="sin-operacion">
+                                <div class="column">
+                                    <figure class="image">
+                                        <img src="img/wallet.svg" alt="Imagen de billetera">
+                                    </figure>
+                                    <h4 class="has-text-centered is-size-4 has-text-weight-semibold mt-6">Sin resultados</h4>
+                                    <p class="has-text-centered mt-3 mb-6">Cambia los filtros o agrega operaciones</p>
                                 </div>
                             </div>
                         </div>
