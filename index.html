@@ -424,6 +424,101 @@
                 </div>
             </div>
         </section>
+        <section class="section mt-5 vista" id="vista-operacion">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-10">
+                        <div class="box">
+                            <h2 class="title is-size-2 has-text-weight-bold">
+                                Nueva operación
+                            </h2>
+                            <div class="field mt-6">
+                                <label class="label" for="descripcion-input">
+                                    Descripción
+                                </label>
+                                <div class="control">
+                                    <div class="is-fullwidth">
+                                        <input class="input" type="text" name="" id="descripcion-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="monto-input">
+                                    Monto
+                                </label>
+                                <div class="control">
+                                    <div class="control">
+                                        <div class="is-fullwidth">
+                                            <input class="input" type="number" name="" id="monto-input" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="tipo-select">
+                                    Tipo
+                                </label>
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select id="tipo-operacion">
+                                            <option value="GASTO">Gasto</option>
+                                            <option value="GANANCIA">Ganancia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="categorias-select">
+                                    Categoría
+                                </label>
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select class="categorias-select" id="categorias-select">
+                                            <option value="">
+                                                Comida
+                                            </option>
+                                            <option value="">
+                                                Servicios
+                                            </option>
+                                            <option value="">
+                                                Salidas
+                                            </option>
+                                            <option value="">
+                                                Educación
+                                            </option>
+                                            <option value="">
+                                                Transporte
+                                            </option>
+                                            <option value="">
+                                                Trabajo
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" for="fecha-input">
+                                    Fecha
+                                </label>
+                                <div class="control">
+                                    <div class="is-fullwidth">
+                                        <input class="input" type="date" name="" id="fecha-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buttons mt-6">
+                                <button class="button is-light" id="cancelar-agregar-operacion-boton">
+                                    Cancelar
+                                </button>
+                                <button class="button is-success" id="agregar-operacion-boton">
+                                    Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <script src="script.js"></script>
