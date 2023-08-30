@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     <!-- link Font Awesome -->
     <script src="https://kit.fontawesome.com/d0ec7b50c3.js" crossorigin="anonymous"></script>
+    <!-- link a la hoja css -->
     <link rel="stylesheet" href="style.css">
     <title>AhorrADAs</title>
 </head>
 <body class="has-background-light">
     <header>
         <nav class="navbar has-background-primary is-spaced" role="navigation" aria-label="main navigation">
+            <!-- Icono y nombre del proyecto -->
             <div class="navbar-brand">
                 <a class="button is-primary py-5">
                     <h1 class="title is-size-2-desktop has-text-white">
@@ -26,6 +28,7 @@
                     <span aria-hidden="true"></span>
                 </a>
             </div>
+            <!-- Botones de navegacion -->
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-end">
                     <div class="navbar-item">
@@ -49,12 +52,15 @@
         </nav>
     </header>
     <main>
+        <!-- INICIO DE LA SECCION BALANCE, FILTROS Y OPERACIONES -->
         <section class="section" id="seccion-balance">
             <div class="container mt-5">
                 <div class="columns is-multiline is-flex is-justify-content-center">
                     <div class="column is-flex is-flex-direction-column is-3">
+                        <!-- APARTADO BALANCE -->
                         <div class="box">
                             <h2 class="title is-3 mb-6 has-text-weight-bold">Balance</h2>
+                            <!-- Ganancias -->
                             <div class="columns">
                                 <div class="column">
                                     <h4 class="subtitle is-5">Ganancias</h4>
@@ -63,6 +69,7 @@
                                     <h4 class="subtitle is-6 has-text-right-tablet has-text-success">+$0</h4>
                                 </div>
                             </div>
+                            <!-- Gastos -->
                             <div class="columns">
                                 <div class="column mb-3">
                                     <h4 class="subtitle is-5">Gastos</h4>
@@ -71,6 +78,7 @@
                                     <h4 class="subtitle is-6 has-text-right-tablet has-text-danger">-$0</h4>
                                 </div>
                             </div>
+                            <!-- Total -->
                             <div class="columns">
                                 <div class="column">
                                     <h4 class="subtitle is-4">Total</h4>
@@ -80,6 +88,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- APARTADO FILTROS -->
                         <div class="box">
                             <div class="columns">
                                 <div class="column">
@@ -91,6 +100,7 @@
                             </div>
                             <div class=" p-0">
                                 <form action="#" id="formulario-filtros">
+                                    <!-- Tipo del filtro -->
                                     <div class="field">
                                         <label class="label">Tipo</label>
                                         <div class="control">
@@ -103,6 +113,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Categoria del filtro -->
                                     <div class="field">
                                         <label class="label">Categoría</label>
                                         <div class="control">
@@ -119,6 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Fecha del filtro -->
                                     <div class="field">
                                         <label class="label">Desde</label>
                                         <div class="control">
@@ -127,6 +139,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Orden del filtro -->
                                     <div class="field">
                                         <label class="label">Ordenar por</label>
                                         <div class="control">
@@ -147,7 +160,9 @@
                         </div>
                     </div>
                     <div class="column is-7">
+                        <!-- APARTADO OPERACIONES -->
                         <div class="box">
+                            <!-- Titulo y boton de nueva operacion -->
                             <div class="columns">
                                 <div class="column">
                                     <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
@@ -156,6 +171,7 @@
                                     <button class="button has-background-primary has-text-white">+ Nueva operación</button>
                                 </div>
                             </div>
+                            <!-- Resultado de la operacion -->
                             <div class="mt-5 py-6" id="sin-operacion">
                                 <div class="column">
                                     <figure class="image">
@@ -170,6 +186,7 @@
                 </div>
             </div>
         </section>
+        <!-- INICIO DE LA SECCION CATEGORIAS -->
         <section class="section mt-5 is-hidden" id="seccion-categorias">
             <div class="container">
                 <div class="columns is-multiline is-centered">
@@ -178,6 +195,7 @@
                             <h2 class="title is-2 mb-6 has-text-weight-bold">
                                 Categorías
                             </h2>
+                            <!-- Input para agregar categorias + boton -->
                             <label class="label">Nombre</label>
                             <div class="field is-grouped">
                                 <div class="control is-expanded">
@@ -190,11 +208,14 @@
                                 </div>
                             </div>
                             <div class="mt-6" id="categorias">
+                                <!-- Comienzo de las categorias -->
                                 <div class="mb-3">
                                     <div class="columns is-vcentered is-mobile">
+                                        <!-- Nombre de la categoria -->
                                         <div class="column">
                                             <span class="tag is-primary is-light">Comida</span>
                                         </div>
+                                        <!-- Botones para eliminar o editar categoria -->
                                         <div class="column is-narrow has-text">
                                             <a href="#" class="mr-4 is-size-7 edit-link">Editar</a>
                                             <a href="#" class="is-size-7 delete-link">Eliminar</a>
@@ -256,12 +277,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Fin de las categorias -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- INICIO DE LA SECCION REPORTES -->
         <section class="section mt-5 vista is-hidden" id="seccion-reportes">
             <div class="container">
                 <div class="columns is-centered is-10">
@@ -270,6 +293,7 @@
                             <h2 class="title is-size-2 has-text-weight-bold pb-2">
                                 Reportes
                             </h2>
+                            <!-- Apartado de reportes sin operaciones -->
                             <div id="sin-reportes" class="is-hidden">
                                 <div class="my-6 py-6">
                                     <figure class="image">
@@ -424,6 +448,7 @@
                 </div>
             </div>
         </section>
+        <!-- INICIO DE LA SECCION NUEVA OPERACION -->
         <section class="section mt-5 vista is-hidden" id="seccion-nueva-operacion">
             <div class="container">
                 <div class="columns is-centered">
@@ -432,6 +457,7 @@
                             <h2 class="title is-size-2 has-text-weight-bold">
                                 Nueva operación
                             </h2>
+                            <!-- Input descripcion de la nueva operacion -->
                             <div class="field mt-6">
                                 <label class="label" for="descripcion-input">
                                     Descripción
@@ -442,6 +468,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Input del monto de la nueva operacion -->
                             <div class="field">
                                 <label class="label" for="monto-input">
                                     Monto
@@ -454,6 +481,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Select del tipo de la nueva operacion -->
                             <div class="field">
                                 <label class="label" for="tipo-select">
                                     Tipo
@@ -467,12 +495,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Select con la categoria de la nueva operacion -->
                             <div class="field">
                                 <label class="label" for="categorias-select">
                                     Categoría
                                 </label>
                                 <div class="control">
                                     <div class="select is-fullwidth">
+                                        <!-- categorias -->
                                         <select class="categorias-select" id="categorias-select">
                                             <option value="">
                                                 Comida
@@ -496,6 +526,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- input fecha de la nueva operacion -->
                             <div class="field">
                                 <label class="label" for="fecha-input">
                                     Fecha
