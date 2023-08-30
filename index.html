@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar has-background-primary is-spaced" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
+                <a class="button is-primary py-5">
                     <h1 class="title is-size-2-desktop has-text-white">
                         <i class="fa-solid fa-wallet mr-2"></i> AhorrADAs
                     </h1>
@@ -30,15 +30,15 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary pl-2 pr-2">
+                            <a class="button is-primary pl-2 pr-2" id="boton-balance">
                                 <strong><i class="fas fa-chart-line mr-1" aria-hidden="true"></i></strong>
                                 Balance
                             </a>
-                            <a class="button is-primary pl-2 pr-2">
+                            <a class="button is-primary pl-2 pr-2" id="boton-categorias">
                                 <strong><i class="fa-solid fa-tag mr-1" aria-hidden="true"></i></strong>
                                 Categorías
                             </a>
-                            <a class="button is-primary pl-2 pr-2">
+                            <a class="button is-primary pl-2 pr-2" id="boton-reportes">
                                 <strong><i class="fas fa-chart-pie mr-1" aria-hidden="true"></i></strong>
                                 Reportes
                             </a>
@@ -49,7 +49,7 @@
         </nav>
     </header>
     <main>
-        <section class="section">
+        <section class="section" id="seccion-balance">
             <div class="container mt-5">
                 <div class="columns is-multiline is-flex is-justify-content-center">
                     <div class="column is-flex is-flex-direction-column is-3">
@@ -170,7 +170,7 @@
                 </div>
             </div>
         </section>
-        <section class="section mt-5">
+        <section class="section mt-5 is-hidden" id="seccion-categorias">
             <div class="container">
                 <div class="columns is-multiline is-centered">
                     <div class="column is-10">
@@ -262,7 +262,7 @@
                 </div>
             </div>
         </section>
-        <section class="section mt-5 vista" id="vista-reportes">
+        <section class="section mt-5 vista is-hidden" id="seccion-reportes">
             <div class="container">
                 <div class="columns is-centered is-10">
                     <div class="column is-10">
@@ -270,7 +270,7 @@
                             <h2 class="title is-size-2 has-text-weight-bold pb-2">
                                 Reportes
                             </h2>
-                            <div id="sin-reportes" class="">
+                            <div id="sin-reportes" class="is-hidden">
                                 <div class="my-6 py-6">
                                     <figure class="image">
                                         <img src="https://frontend-proyecto-ahorradas.adaitw.org/imgs/chart.svg" class="" alt="">
@@ -284,7 +284,7 @@
                                 </div>
                             </div>
                             <!-- Resumen-->
-                            <div id="con-reportes" class="">
+                            <div id="con-reportes" class="is-hidden">
                                 <section class="section mb-5" id="resumen">
                                     <h4 class="title is-size-4 mb-5 pb-4">
                                         Resumen
@@ -424,7 +424,7 @@
                 </div>
             </div>
         </section>
-        <section class="section mt-5 vista" id="vista-operacion">
+        <section class="section mt-5 vista is-hidden" id="seccion-nueva-operacion">
             <div class="container">
                 <div class="columns is-centered">
                     <div class="column is-10">
