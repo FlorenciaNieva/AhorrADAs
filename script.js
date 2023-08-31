@@ -22,3 +22,18 @@ $('#boton-reportes').addEventListener('click', () => {
     $('#seccion-balance').classList.add('is-hidden');
     $('#seccion-nueva-operacion').classList.add('is-hidden');
 });
+
+// boton para ocultar o mostrar los filtros 
+
+$('#toggle-filtros').addEventListener('click', () => {
+    const toggle = $('#toggle-filtros')
+    const filtros = $('#container-filtros')
+
+        if (toggle.innerText === 'Ocultar filtros') {
+            toggle.innerText = 'Mostrar filtros'
+            filtros.classList.toggle('is-hidden');
+        } else {
+            toggle.innerText = 'Ocultar filtros'
+            filtros.classList.toggle('is-hidden');
+        }
+});
