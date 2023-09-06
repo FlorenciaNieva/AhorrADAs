@@ -37,3 +37,44 @@ $('#toggle-filtros').addEventListener('click', () => {
             filtros.classList.toggle('is-hidden');
         }
 });
+
+// INPUT SELECT
+
+const traerDatos = () => {
+    return JSON.parse(localStorage.getItem("datos")); //retorna lo que encuentre bajo esa key y lo convierte en objeto
+};
+
+// const subirDatos = (datos) => {
+//     localStorage.setItem("datos", JSON.stringify({ ...traerDatos(), ...datos }));
+// };
+
+const traerCategorias = () => {
+    return traerDatos()?.categorias; // trae lo que encuentre en el localStorage
+};
+
+const randomId = () => self.crypto.randomUUID();
+
+let categorias = traerCategorias() || [ 
+    { id: randomId(), nombre: "comida", }, 
+    { id: randomId(), nombre: "servicios", },
+    { id: randomId(), nombre: "salidas", },
+    { id: randomId(), nombre: "transporte", },
+    { id: randomId(), nombre: "educacion", },
+    { id: randomId(), nombre: "trabajo", },
+];
+
+console.log(categorias);
+
+
+const llenarSelect = (categories) => {
+    $$(".categorias-select").forEach((select) => {
+    for (let { nombre, id } of categories) {
+        select.innerHTML += `<option value="${id}">${nombre}</option>`;
+    }
+    });
+};
+
+llenarSelect(categorias);
+
+
+
