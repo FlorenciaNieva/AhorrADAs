@@ -119,7 +119,7 @@ const showEditCategory = (id) => {
     );
 };
 
-//CREA LA NUEVA CATEGORIA CON EL MISMO ID, ACTUALIZA LA LISTA CON LAS NUEVAS CATEGORIAS
+//CREA LA NUEVA CATEGORIA EDITADA CON EL MISMO ID
 const editCategory = (id) => {
     let nuevaCategoria = {
         id: id,
@@ -137,3 +137,13 @@ const actualizarCategorias = (categoriasActualizadas) => {
     llenarSelect(categoriasActualizadas);
     subirDatos({ categorias: categoriasActualizadas });
 }
+
+// SE AGREGA LA NUEVA CATEGORIA
+$("#agregar-categoria-boton").addEventListener("click", () => {
+    let nuevaCategoria = {
+                id: randomId(),
+                nombre: $("#categoria-input").value,
+            };
+            let categoriasActualizadas = [...categorias, nuevaCategoria]; 
+            actualizarCategorias(categoriasActualizadas);
+});
