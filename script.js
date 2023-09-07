@@ -149,10 +149,7 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
 });
 
 // SE ELIMINA LA CATEGORIA
-const removeCategory = (id) => {
-    let objetoAEliminar = { 
-        id: id
-    };
-    let categoriasActualizadas = traerCategorias().filter((objeto) => objeto.id !== objetoAEliminar.id);
-    actualizarCategorias(categoriasActualizadas);
-}
+    const removeCategory = (id) => {
+        let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
+        actualizarCategorias(categoriasActualizadas);
+    }
