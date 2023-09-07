@@ -128,9 +128,12 @@ const editCategory = (id) => {
     let categoriasActualizadas = traerCategorias().map((categoria) =>
         categoria.id === id ? { ...nuevaCategoria } : categoria
     );
+    actualizarCategorias(categoriasActualizadas);
+};
+
+// ACTUALIZA LA LISTA CON LAS CATEGORIAS
+const actualizarCategorias = (categoriasActualizadas) => {
     listaCategorias(categoriasActualizadas);
     llenarSelect(categoriasActualizadas);
     subirDatos({ categorias: categoriasActualizadas });
-};
-
-
+}
