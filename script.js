@@ -23,6 +23,26 @@ $('#boton-reportes').addEventListener('click', () => {
     $('#seccion-nueva-operacion').classList.add('is-hidden');
 });
 
+// MENU HAMBURGUESA DEL NAVBAR
+
+$('.navbar-burger').addEventListener('click', () => {
+    $('.navbar-burger').classList.toggle('is-active');
+    $('.navbar-menu').classList.toggle('is-active');
+    $('.navbar-menu').classList.toggle('has-background-primary');
+    $('#botones-nav').classList.toggle('is-flex-direction-column');
+    $('#botones-nav').classList.toggle('is-align-content-flex-start');
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+        $('.navbar-burger').classList.remove('is-active');
+        $('.navbar-menu').classList.remove('is-active');
+        $('.navbar-menu').classList.remove('has-background-primary');
+        $('#botones-nav').classList.remove('is-flex-direction-column');
+        $('#botones-nav').classList.remove('is-align-content-flex-start');
+    }
+});
+
 // boton para ocultar o mostrar los filtros
 
 $('#toggle-filtros').addEventListener('click', () => {
