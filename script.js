@@ -14,6 +14,8 @@ $('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-cat
 
 $('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
 
+$('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
+
 // boton para ocultar o mostrar los filtros
 
 $('#toggle-filtros').addEventListener('click', () => {
