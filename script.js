@@ -1,6 +1,13 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
+//INTERCAMBIO DE PANELES
+
+const mostrarVista = (vistaAMostrar) => {
+    $$('.vista').forEach((vista) => vista.classList.add('is-hidden'));
+    $(`#${vistaAMostrar}`).classList.remove('is-hidden');
+};
+
 $('#boton-balance').addEventListener('click', () => {
     $('#seccion-balance').classList.remove('is-hidden');
     $('#seccion-categorias').classList.add('is-hidden');
