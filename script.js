@@ -1,26 +1,39 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-$('#boton-balance').addEventListener('click', () => {
-    $('#seccion-balance').classList.remove('is-hidden');
-    $('#seccion-categorias').classList.add('is-hidden');
-    $('#seccion-reportes').classList.add('is-hidden');
-    $('#seccion-nueva-operacion').classList.add('is-hidden');
+//INTERCAMBIO DE PANELES
+
+const mostrarVista = (vistaAMostrar) => {
+    $$('.vista').forEach((vista) => vista.classList.add('is-hidden'));
+    $(`#${vistaAMostrar}`).classList.remove('is-hidden');
+};
+
+$('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
+
+$('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
+
+$('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
+
+$('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
+
+// MENU HAMBURGUESA DEL NAVBAR
+
+$('.navbar-burger').addEventListener('click', () => {
+    $('.navbar-burger').classList.toggle('is-active');
+    $('.navbar-menu').classList.toggle('is-active');
+    $('.navbar-menu').classList.toggle('has-background-primary');
+    $('#botones-nav').classList.toggle('is-flex-direction-column');
+    $('#botones-nav').classList.toggle('is-align-content-flex-start');
 });
 
-$('#boton-categorias').addEventListener('click', () => {
-    $('#seccion-categorias').classList.remove('is-hidden');
-    $('#seccion-balance').classList.add('is-hidden');
-    $('#seccion-reportes').classList.add('is-hidden');
-    $('#seccion-nueva-operacion').classList.add('is-hidden');
-});
-
-$('#boton-reportes').addEventListener('click', () => {
-    $('#seccion-reportes').classList.remove('is-hidden');
-    $('#sin-reportes').classList.remove('is-hidden');
-    $('#seccion-categorias').classList.add('is-hidden');
-    $('#seccion-balance').classList.add('is-hidden');
-    $('#seccion-nueva-operacion').classList.add('is-hidden');
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+        $('.navbar-burger').classList.remove('is-active');
+        $('.navbar-menu').classList.remove('is-active');
+        $('.navbar-menu').classList.remove('has-background-primary');
+        $('#botones-nav').classList.remove('is-flex-direction-column');
+        $('#botones-nav').classList.remove('is-align-content-flex-start');
+    }
 });
 
 // boton para ocultar o mostrar los filtros

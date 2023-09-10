@@ -32,16 +32,16 @@
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-end">
                     <div class="navbar-item">
-                        <div class="buttons">
-                            <a class="button is-primary pl-2 pr-2" id="boton-balance">
+                        <div class="buttons" id="botones-nav">
+                            <a class="button is-primary is-align-self-flex-start pl-2 pr-2" id="boton-balance">
                                 <strong><i class="fas fa-chart-line mr-1" aria-hidden="true"></i></strong>
                                 Balance
                             </a>
-                            <a class="button is-primary pl-2 pr-2" id="boton-categorias">
+                            <a class="button is-primary is-align-self-flex-start pl-2 pr-2" id="boton-categorias">
                                 <strong><i class="fa-solid fa-tag mr-1" aria-hidden="true"></i></strong>
                                 Categorías
                             </a>
-                            <a class="button is-primary pl-2 pr-2" id="boton-reportes">
+                            <a class="button is-primary is-align-self-flex-start pl-2 pr-2" id="boton-reportes">
                                 <strong><i class="fas fa-chart-pie mr-1" aria-hidden="true"></i></strong>
                                 Reportes
                             </a>
@@ -53,7 +53,7 @@
     </header>
     <main>
         <!-- INICIO DE LA SECCION BALANCE, FILTROS Y OPERACIONES -->
-        <section class="section" id="seccion-balance">
+        <section class="section vista" id="seccion-balance">
             <div class="container mt-5">
                 <div class="columns is-multiline is-flex is-justify-content-center">
                     <div class="column is-flex is-flex-direction-column is-3">
@@ -162,7 +162,9 @@
                                     <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
                                 </div>
                                 <div class="column has-text-right-tablet">
-                                    <button class="button has-background-primary has-text-white">+ Nueva operación</button>
+                                    <button class="button has-background-primary has-text-white" id="boton-nueva-operacion">
+                                        + Nueva operación
+                                    </button>
                                 </div>
                             </div>
                             <!-- Resultado de la operacion -->
@@ -175,13 +177,99 @@
                                     <p class="has-text-centered mt-3 mb-6">Cambia los filtros o agrega operaciones</p>
                                 </div>
                             </div>
+                            <div class="is-hidden" id="con-operacion">
+                                <div class="columns">
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold">Descripción</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold">Categoría</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Fecha</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Monto</h4>
+                                    </div>
+                                    <div class="column">
+                                        <h4 class="has-text-weight-semibold has-text-right">Acciones</h4>
+                                    </div>
+                                </div>
+                                <div id="operaciones">
+                                    <!-- Añadir operaciones desde Javascript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- INICIO DE LA SECCION VISTA EDITAR OPERACIÓN -->
+        <section class="section mt-5 vista is-hidden" id="vista-editar-operaciones">
+            <div class="container">
+                <div class="columns is-multiline is-centered">
+                    <div class="column is-10">
+                        <div class="box">
+                            <h2 class="title is-size-2 has-text-weight-bold">Editar operación</h2>
+                            <div class="field">
+                                <label class="label">
+                                    Descripción
+                                    <input type="text" class="input is-fullwidth mt-2" id="editar-descripcion-operacion">
+                                </label>
+                            </div>
+                            <div class="field">
+                                <label class="label">
+                                    Monto
+                                    <input type="number" class="input is-fullwidth mt-2" id="editar-monto-input">
+                                </label>
+                            </div>
+                            <div class="field">
+                                <label for="editar-tipo-operacion" class="label">
+                                    Tipo
+                                </label>
+                                <div class="control">
+                                    <div class="select is-fullwidth mt-2">
+                                        <select id="editar-tipo-operacion">
+                                            <option value="">Gastos</option>
+                                            <option value="">Ganancias</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="editar-categorias-select" class="label">
+                                    Categoría
+                                </label>
+                                <div class="control">
+                                    <div class="select is-fullwidth mt-2">
+                                        <select id="editar-categorias-select">
+                                            <option value="">Servicios</option>
+                                            <option value="">Salidas</option>
+                                            <option value="">Transporte</option>
+                                            <option value="">Trabajo</option>
+                                            <option value="">Comida</option>
+                                            <option value="">Educación</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">
+                                    Fecha
+                                    <input type="date" class="input mt-2" id="editar-fecha-operacion">
+                                </label>
+                            </div>
+                            <div class="buttons mt-6 is-justify-content-end">
+                                <button class="button is-light" id="boton-cancelar-editar-operacion">Cancelar</button>
+                                <button class="button is-success" id="boton-editar-operacion">Editar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- INICIO DE LA SECCION CATEGORIAS -->
-        <section class="section mt-5 is-hidden" id="seccion-categorias">
+        <section class="section mt-5 vista is-hidden" id="seccion-categorias">
             <div class="container">
                 <div class="columns is-multiline is-centered">
                     <div class="column is-10">
@@ -247,7 +335,7 @@
                                 Reportes
                             </h2>
                             <!-- Apartado de reportes sin operaciones -->
-                            <div id="sin-reportes" class="is-hidden">
+                            <div id="sin-reportes" class="">
                                 <div class="my-6 py-6">
                                     <figure class="image">
                                         <img src="https://frontend-proyecto-ahorradas.adaitw.org/imgs/chart.svg" class="" alt="">
