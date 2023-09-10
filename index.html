@@ -202,6 +202,70 @@
                 </div>
             </div>
         </section>
+        <!-- INICIO DE LA SECCION VISTA EDITAR OPERACIÓN -->
+        <section class="section mt-5 vista is-hidden" id="vista-editar-operaciones">
+            <div class="container">
+                <div class="columns is-multiline is-centered">
+                    <div class="column is-10">
+                        <div class="box">
+                            <h2 class="title is-size-2 has-text-weight-bold">Editar operación</h2>
+                            <div class="field">
+                                <label class="label">
+                                    Descripción
+                                    <input type="text" class="input is-fullwidth mt-2" id="editar-descripcion-operacion">
+                                </label>
+                            </div>
+                            <div class="field">
+                                <label class="label">
+                                    Monto
+                                    <input type="number" class="input is-fullwidth mt-2" id="editar-monto-input">
+                                </label>
+                            </div>
+                            <div class="field">
+                                <label for="editar-tipo-operacion" class="label">
+                                    Tipo
+                                </label>
+                                <div class="control">
+                                    <div class="select is-fullwidth mt-2">
+                                        <select id="editar-tipo-operacion">
+                                            <option value="">Gastos</option>
+                                            <option value="">Ganancias</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label for="editar-categorias-select" class="label">
+                                    Categoría
+                                </label>
+                                <div class="control">
+                                    <div class="select is-fullwidth mt-2">
+                                        <select id="editar-categorias-select">
+                                            <option value="">Servicios</option>
+                                            <option value="">Salidas</option>
+                                            <option value="">Transporte</option>
+                                            <option value="">Trabajo</option>
+                                            <option value="">Comida</option>
+                                            <option value="">Educación</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">
+                                    Fecha
+                                    <input type="date" class="input mt-2" id="editar-fecha-operacion">
+                                </label>
+                            </div>
+                            <div class="buttons mt-6 is-justify-content-end">
+                                <button class="button is-light" id="boton-cancelar-editar-operacion">Cancelar</button>
+                                <button class="button is-success" id="boton-editar-operacion">Editar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- INICIO DE LA SECCION CATEGORIAS -->
         <section class="section mt-5 is-hidden" id="seccion-categorias">
             <div class="container">
