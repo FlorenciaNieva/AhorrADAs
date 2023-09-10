@@ -53,7 +53,7 @@
     </header>
     <main>
         <!-- INICIO DE LA SECCION BALANCE, FILTROS Y OPERACIONES -->
-        <section class="section" id="seccion-balance">
+        <section class="section vista" id="seccion-balance">
             <div class="container mt-5">
                 <div class="columns is-multiline is-flex is-justify-content-center">
                     <div class="column is-flex is-flex-direction-column is-3">
@@ -162,7 +162,9 @@
                                     <h2 class="title is-4 has-text-weight-bold">Operaciones</h2>
                                 </div>
                                 <div class="column has-text-right-tablet">
-                                    <button class="button has-background-primary has-text-white">+ Nueva operación</button>
+                                    <button class="button has-background-primary has-text-white" id="boton-nueva-operacion">
+                                        + Nueva operación
+                                    </button>
                                 </div>
                             </div>
                             <!-- Resultado de la operacion -->
@@ -181,7 +183,7 @@
             </div>
         </section>
         <!-- INICIO DE LA SECCION CATEGORIAS -->
-        <section class="section mt-5 is-hidden" id="seccion-categorias">
+        <section class="section mt-5 vista is-hidden" id="seccion-categorias">
             <div class="container">
                 <div class="columns is-multiline is-centered">
                     <div class="column is-10">
@@ -247,7 +249,7 @@
                                 Reportes
                             </h2>
                             <!-- Apartado de reportes sin operaciones -->
-                            <div id="sin-reportes" class="is-hidden">
+                            <div id="sin-reportes" class="">
                                 <div class="my-6 py-6">
                                     <figure class="image">
                                         <img src="https://frontend-proyecto-ahorradas.adaitw.org/imgs/chart.svg" class="" alt="">

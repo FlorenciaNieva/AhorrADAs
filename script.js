@@ -1,27 +1,20 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-$('#boton-balance').addEventListener('click', () => {
-    $('#seccion-balance').classList.remove('is-hidden');
-    $('#seccion-categorias').classList.add('is-hidden');
-    $('#seccion-reportes').classList.add('is-hidden');
-    $('#seccion-nueva-operacion').classList.add('is-hidden');
-});
+//INTERCAMBIO DE PANELES
 
-$('#boton-categorias').addEventListener('click', () => {
-    $('#seccion-categorias').classList.remove('is-hidden');
-    $('#seccion-balance').classList.add('is-hidden');
-    $('#seccion-reportes').classList.add('is-hidden');
-    $('#seccion-nueva-operacion').classList.add('is-hidden');
-});
+const mostrarVista = (vistaAMostrar) => {
+    $$('.vista').forEach((vista) => vista.classList.add('is-hidden'));
+    $(`#${vistaAMostrar}`).classList.remove('is-hidden');
+};
 
-$('#boton-reportes').addEventListener('click', () => {
-    $('#seccion-reportes').classList.remove('is-hidden');
-    $('#sin-reportes').classList.remove('is-hidden');
-    $('#seccion-categorias').classList.add('is-hidden');
-    $('#seccion-balance').classList.add('is-hidden');
-    $('#seccion-nueva-operacion').classList.add('is-hidden');
-});
+$('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
+
+$('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
+
+$('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
+
+$('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
 
 // boton para ocultar o mostrar los filtros
 
