@@ -1,0 +1,93 @@
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m1c4b0f8[m HEAD@{1}: reset: moving to HEAD~1
+[33m53552e4[m HEAD@{2}: commit: feat: añado evento en botón cancelar en nueva operación
+[33m1c4b0f8[m HEAD@{3}: commit: feat: incorporación de función para añadir operaciónes y evento en el botón de agregar en nueva operación
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{4}: checkout: moving from main to aniadirOperacion
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{5}: checkout: moving from fixSelectCategoria to main
+[33m2dc5e6b[m[33m ([m[1;31morigin/fixSelectCategoria[m[33m, [m[1;32mfixSelectCategoria[m[33m)[m HEAD@{6}: checkout: moving from main to fixSelectCategoria
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{7}: checkout: moving from fixSelectCategoria to main
+[33m2dc5e6b[m[33m ([m[1;31morigin/fixSelectCategoria[m[33m, [m[1;32mfixSelectCategoria[m[33m)[m HEAD@{8}: commit: fix: arreglo de selects de categorías
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{9}: checkout: moving from main to fixSelectCategoria
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{10}: checkout: moving from aniadirOperacion to main
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{11}: checkout: moving from main to aniadirOperacion
+[33mfa14faf[m[33m ([m[1;36mHEAD -> [m[1;32maniadirOperacion[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: pull origin main: Fast-forward
+[33m8b05e21[m HEAD@{13}: pull origin main: Fast-forward
+[33m4e3f95a[m HEAD@{14}: checkout: moving from operaciones to main
+[33m5a7f057[m[33m ([m[1;31morigin/operaciones[m[33m, [m[1;32moperaciones[m[33m)[m HEAD@{15}: commit: feat: incorporación de estructura de sección editar operación
+[33m04438ff[m HEAD@{16}: checkout: moving from main to operaciones
+[33m4e3f95a[m HEAD@{17}: checkout: moving from operaciones to main
+[33m04438ff[m HEAD@{18}: commit: feat: incorporación de estructura con-operacion
+[33m4e3f95a[m HEAD@{19}: merge main: Fast-forward
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{20}: checkout: moving from main to operaciones
+[33m4e3f95a[m HEAD@{21}: checkout: moving from nav to main
+[33m6845c07[m[33m ([m[1;31morigin/nav[m[33m, [m[1;32mnav[m[33m)[m HEAD@{22}: commit: feat: incorporación de función de activación del menú hamburguesa del navbar y función para restablecer el diseño original con el tamaño de la pantalla
+[33m4e3f95a[m HEAD@{23}: reset: moving to HEAD~
+[33m9a54a7f[m HEAD@{24}: commit: feat: activación de menú hamburguesa del navbar
+[33m4e3f95a[m HEAD@{25}: merge main: Fast-forward
+[33maf79039[m HEAD@{26}: checkout: moving from main to nav
+[33m4e3f95a[m HEAD@{27}: checkout: moving from fixMostrarVista to main
+[33m0c6770c[m[33m ([m[1;31morigin/fixMostrarVista[m[33m, [m[1;32mfixMostrarVista[m[33m)[m HEAD@{28}: checkout: moving from main to fixMostrarVista
+[33m4e3f95a[m HEAD@{29}: checkout: moving from fixMostrarVista to main
+[33m0c6770c[m[33m ([m[1;31morigin/fixMostrarVista[m[33m, [m[1;32mfixMostrarVista[m[33m)[m HEAD@{30}: commit: feat: incorporación de evento en botón nueva operación
+[33m6c11802[m HEAD@{31}: commit: fix: optimización de líneas de código en eventos de intercambio de paneles con función mostrarVista
+[33m5c0f154[m HEAD@{32}: commit: feat: incorporación de función mostrarVista
+[33m4e3f95a[m HEAD@{33}: reset: moving to HEAD~
+[33mb9deed6[m HEAD@{34}: commit: fix: Optimización de líneas de código en eventos de intercambio de paneles con función mostrarVista
+[33m4e3f95a[m HEAD@{35}: reset: moving to HEAD~
+[33m2da037e[m HEAD@{36}: commit: Optimización de líneas de código en eventos de intercambio de paneles con función mostrarVista
+[33m4e3f95a[m HEAD@{37}: checkout: moving from operaciones to fixMostrarVista
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{38}: reset: moving to HEAD~
+[33m50198c2[m HEAD@{39}: checkout: moving from fixMostrarVista to operaciones
+[33m4e3f95a[m HEAD@{40}: checkout: moving from main to fixMostrarVista
+[33m4e3f95a[m HEAD@{41}: checkout: moving from fixMostrarVista to main
+[33m4e3f95a[m HEAD@{42}: checkout: moving from main to fixMostrarVista
+[33m4e3f95a[m HEAD@{43}: pull origin main: Fast-forward
+[33mc342ad8[m HEAD@{44}: pull origin main: Fast-forward
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{45}: checkout: moving from operaciones to main
+[33m50198c2[m HEAD@{46}: commit: Feat: Incorporación de interactividad en el botón de nueva operación
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{47}: checkout: moving from main to operaciones
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{48}: checkout: moving from operaciones to main
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{49}: checkout: moving from balance to operaciones
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{50}: merge main: Fast-forward
+[33m9c8c14e[m HEAD@{51}: checkout: moving from main to balance
+[33md539739[m[33m ([m[1;32mbalance[m[33m)[m HEAD@{52}: pull origin main: Fast-forward
+[33m26be13d[m HEAD@{53}: checkout: moving from nav to main
+[33maf79039[m HEAD@{54}: checkout: moving from main to nav
+[33m26be13d[m HEAD@{55}: checkout: moving from nav to main
+[33maf79039[m HEAD@{56}: commit: Feat: Incorporación de funcionabilidad en botones del navbar para intercambiar secciones
+[33m62b91d7[m HEAD@{57}: commit: Feat: Se añadio función de selector de elementos HTML
+[33m68a885c[m HEAD@{58}: checkout: moving from main to nav
+[33m26be13d[m HEAD@{59}: checkout: moving from nav to main
+[33m68a885c[m HEAD@{60}: commit: fix: Se corrigio las clases de la etiqueta <a> del <h1> del navbar
+[33m26be13d[m HEAD@{61}: merge main: Fast-forward
+[33mec3883e[m HEAD@{62}: checkout: moving from main to nav
+[33m26be13d[m HEAD@{63}: pull origin main: Fast-forward
+[33m9c8c14e[m HEAD@{64}: checkout: moving from balance to main
+[33m9c8c14e[m HEAD@{65}: merge main: Fast-forward
+[33maeb2c68[m[33m ([m[1;31morigin/balance[m[33m)[m HEAD@{66}: checkout: moving from main to balance
+[33m9c8c14e[m HEAD@{67}: pull origin main: Fast-forward
+[33mec3883e[m HEAD@{68}: checkout: moving from balance to main
+[33maeb2c68[m[33m ([m[1;31morigin/balance[m[33m)[m HEAD@{69}: commit: feat: Incorporación del contenido del apartado sin operaciones
+[33mac22aa1[m HEAD@{70}: commit: feat: Creación de formulario de apartado filtros
+[33m77e9745[m HEAD@{71}: commit: feat: Incorporación de contenido en el apartado balance
+[33mec3883e[m HEAD@{72}: checkout: moving from main to balance
+[33mec3883e[m HEAD@{73}: checkout: moving from nav to main
+[33mec3883e[m HEAD@{74}: merge main: Fast-forward
+[33m1d97137[m HEAD@{75}: checkout: moving from balance to nav
+[33mec3883e[m HEAD@{76}: merge main: Fast-forward
+[33m840a226[m HEAD@{77}: checkout: moving from main to balance
+[33mec3883e[m HEAD@{78}: pull origin main: Fast-forward
+[33m513ed87[m HEAD@{79}: checkout: moving from balance to main
+[33m840a226[m HEAD@{80}: commit (amend): feat: se añadio main con estructura de la sección balace
+[33m50e0bc3[m HEAD@{81}: commit: feat: Se añadio main con section balance sin terminar
+[33m513ed87[m HEAD@{82}: merge main: Fast-forward
+[33m806d2d7[m HEAD@{83}: checkout: moving from main to balance
+[33m513ed87[m HEAD@{84}: pull origin main: Fast-forward
+[33m806d2d7[m HEAD@{85}: checkout: moving from balance to main
+[33m806d2d7[m HEAD@{86}: checkout: moving from main to balance
+[33m806d2d7[m HEAD@{87}: checkout: moving from nav to main
+[33m1d97137[m HEAD@{88}: checkout: moving from main to nav
+[33m806d2d7[m HEAD@{89}: checkout: moving from nav to main
+[33m1d97137[m HEAD@{90}: commit: Incorporación de nav
+[33m806d2d7[m HEAD@{91}: checkout: moving from main to nav
+[33m806d2d7[m HEAD@{92}: commit (initial): Estructura HTML y archivos JS/CSS

@@ -175,7 +175,7 @@ const aniadirOperacion = () => {
     const nombreCategoria = categoria.options[categoria.selectedIndex].textContent;
     const fechaInput = $('#fecha-input-operacion').value;
     const fechaCompleta = new Date(fechaInput);
-    const dia = fechaCompleta.getDate();
+    const dia = fechaCompleta.getDate() + 1;
     const mes = fechaCompleta.getMonth() + 1;
     const anio = fechaCompleta.getFullYear();
     const monto = $('#monto-input').value;
