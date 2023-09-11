@@ -166,3 +166,10 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
         let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
         actualizarCategorias(categoriasActualizadas);
     }
+
+// SECCION DE FILTROS ---------------------------
+
+// Debemos crear una funcion por cada filtro
+const filtrarPorTipo = (listaOperaciones, tipoOperacion) => {
+    return listaOperaciones.filter((operacion) => operacion.tipo === tipoOperacion);
+}
