@@ -185,7 +185,7 @@ const aplicarFiltros = () => {
     // Guardamos las operaciones que existan pero sin modificar el original
     let operacionesFiltradas = [...operaciones];
     let filtroTipo = $("#selector-tipo").value;
-    let filtroCategoria = $("#categorias-select").value;
+    let filtroCategoria = $("#filtro-categorias-select").value;
 
     operacionesFiltradas = filtrarPorTipo(operaciones, filtroTipo);
     operacionesFiltradas = filtrarPorCategoria(operaciones, filtroCategoria)
