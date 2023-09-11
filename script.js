@@ -166,3 +166,43 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
         let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
         actualizarCategorias(categoriasActualizadas);
     }
+
+// AÑADIR OPERACIÓN EN SECCION CON OPERACION
+const aniadirOperacion = () => {
+    $('#operaciones').innerHTML = '';
+    const descripcion = $('#descripcion-input').value;
+    const categoria = $('#categorias-select');
+    const nombreCategoria = categoria.options[categoria.selectedIndex].textContent;
+    const fechaInput = $('#fecha-input-operacion').value;
+    const fechaCompleta = new Date(fechaInput);
+    const dia = fechaCompleta.getDate();
+    const mes = fechaCompleta.getMonth() + 1;
+    const anio = fechaCompleta.getFullYear();
+    const monto = $('#monto-input').value;
+    $('#operaciones').innerHTML += `
+    <div class="column">
+        <h4 class="has-text-weight-semibold">${descripcion}</h4>
+    </div>
+    <div class="column"> 
+        <span class="tag is-primary is-light">${nombreCategoria}</span>
+    </div>
+    <div class="column">
+        <h4 class=" subtitle is-6 has-text-right">${dia}/${mes}/${anio}</h4>
+    </div>
+    <div class="column">
+        <h4 class="has-text-weight-semibold has-text-right">+$${monto}</h4>
+    </div>
+    <div class="column is-2-tablet is-6-mobile has-text-right">
+        <p class="is-fullwidth">
+            <a href="#" class="edit-link is-size-7 mr-3">Editar</a>
+            <a href="#" class="delete-link is-size-7">Eliminar</b>
+        </p>
+    </div>
+    `
+}
+
+// BOTÓN AGREGAR NUEVA OPERACIÓN
+$('#agregar-operacion-boton').addEventListener('click', () => {
+    aniadirOperacion();
+    mostrarVista('seccion-balance');
+});
