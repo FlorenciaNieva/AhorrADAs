@@ -173,3 +173,7 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
 const filtrarPorTipo = (listaOperaciones, tipoOperacion) => {
     return listaOperaciones.filter((operacion) => operacion.tipo === tipoOperacion);
 }
+
+const filtrarPorCategoria = (operaciones, categoria) => {
+    return operaciones.filter((operacion) => operacion.categoria === categoria);
+}
