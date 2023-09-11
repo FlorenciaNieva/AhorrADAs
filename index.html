@@ -118,7 +118,7 @@
                                         <label class="label">Categoría</label>
                                         <div class="control">
                                             <div class="select is-fullwidth">
-                                                <select id="categorias-select" class="categorias-select">
+                                                <select id="filtro-categorias-select" class="categorias-select">
                                                     <option value="todas">Todas</option>
                                                 </select>
                                             </div>
@@ -242,13 +242,8 @@
                                 </label>
                                 <div class="control">
                                     <div class="select is-fullwidth mt-2">
-                                        <select id="editar-categorias-select">
-                                            <option value="">Servicios</option>
-                                            <option value="">Salidas</option>
-                                            <option value="">Transporte</option>
-                                            <option value="">Trabajo</option>
-                                            <option value="">Comida</option>
-                                            <option value="">Educación</option>
+                                        <select class="categorias-select" id="editar-categorias-select">
+                                            <!-- Options desde JS -->
                                         </select>
                                     </div>
                                 </div>
@@ -544,25 +539,8 @@
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <!-- categorias -->
-                                        <select class="categorias-select" id="categorias-select">
-                                            <option value="">
-                                                Comida
-                                            </option>
-                                            <option value="">
-                                                Servicios
-                                            </option>
-                                            <option value="">
-                                                Salidas
-                                            </option>
-                                            <option value="">
-                                                Educación
-                                            </option>
-                                            <option value="">
-                                                Transporte
-                                            </option>
-                                            <option value="">
-                                                Trabajo
-                                            </option>
+                                        <select class="categorias-select" id="nueva-operacion-categorias-select">
+                                            <!-- Options desde JS -->
                                         </select>
                                     </div>
                                 </div>
