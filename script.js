@@ -132,7 +132,7 @@ const showEditCategory = (id) => {
     );
 };
 
-//CREA LA NUEVA CATEGORIA CON EL MISMO ID, ACTUALIZA LA LISTA CON LAS NUEVAS CATEGORIAS
+//CREA LA NUEVA CATEGORIA EDITADA CON EL MISMO ID
 const editCategory = (id) => {
     let nuevaCategoria = {
         id: id,
@@ -141,9 +141,28 @@ const editCategory = (id) => {
     let categoriasActualizadas = traerCategorias().map((categoria) =>
         categoria.id === id ? { ...nuevaCategoria } : categoria
     );
+    actualizarCategorias(categoriasActualizadas);
+};
+
+// ACTUALIZA LA LISTA CON LAS CATEGORIAS
+const actualizarCategorias = (categoriasActualizadas) => {
     listaCategorias(categoriasActualizadas);
     llenarSelect(categoriasActualizadas);
     subirDatos({ categorias: categoriasActualizadas });
-};
+}
 
+// SE AGREGA LA NUEVA CATEGORIA
+$("#agregar-categoria-boton").addEventListener("click", () => {
+    let nuevaCategoria = {
+                id: randomId(),
+                nombre: $("#categoria-input").value,
+            };
+            let categoriasActualizadas = [...categorias, nuevaCategoria]; 
+            actualizarCategorias(categoriasActualizadas);
+});
 
+// SE ELIMINA LA CATEGORIA
+    const removeCategory = (id) => {
+        let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
+        actualizarCategorias(categoriasActualizadas);
+    }
