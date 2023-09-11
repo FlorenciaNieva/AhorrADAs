@@ -216,3 +216,31 @@ $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     $('#monto-input').value = '0';
     $('#tipo-operacion').selectedIndex = 0;
 });
+
+// SECCION DE FILTROS ---------------------------
+
+// Debemos crear una funcion por cada filtro
+const filtrarPorTipo = (listaOperaciones, tipoOperacion) => {
+    return listaOperaciones.filter((operacion) => operacion.tipo === tipoOperacion);
+}
+
+const filtrarPorCategoria = (operaciones, categoria) => {
+    return operaciones.filter((operacion) => operacion.categoria === categoria);
+}
+
+$("#selector-tipo").addEventListener("change", () => aplicarFiltros);
+
+const aplicarFiltros = () => {
+    // Aca debemos llamar todas las funciones por tipo de filtro
+    // Guardamos las operaciones que existan pero sin modificar el original
+    let operacionesFiltradas = [...operaciones];
+    let filtroTipo = $("#selector-tipo").value;
+    let filtroCategoria = $("#filtro-categorias-select").value;
+
+    operacionesFiltradas = filtrarPorTipo(operaciones, filtroTipo);
+    operacionesFiltradas = filtrarPorCategoria(operaciones, filtroCategoria)
+
+    // Suponiendo que tenemos una funcion que pinte todas las operaciones
+    // De este forma solo pinta las operaciones que pasaron los filtros
+    mostrarOperaciones(operacionesFiltradas);
+}

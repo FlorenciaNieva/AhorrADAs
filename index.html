@@ -118,7 +118,7 @@
                                         <label class="label">Categoría</label>
                                         <div class="control">
                                             <div class="select is-fullwidth">
-                                                <select id="categorias-select" class="categorias-select">
+                                                <select id="filtro-categorias-select" class="categorias-select">
                                                     <option value="todas">Todas</option>
                                                 </select>
                                             </div>
@@ -177,7 +177,7 @@
                                     <p class="has-text-centered mt-3 mb-6">Cambia los filtros o agrega operaciones</p>
                                 </div>
                             </div>
-                            <div class="is-hidde" id="con-operacion">
+                            <div class="is-hidden" id="con-operacion">
                                 <div class="columns">
                                     <div class="column">
                                         <h4 class="has-text-weight-semibold">Descripción</h4>
@@ -242,13 +242,8 @@
                                 </label>
                                 <div class="control">
                                     <div class="select is-fullwidth mt-2">
-                                        <select id="editar-categorias-select">
-                                            <option value="">Servicios</option>
-                                            <option value="">Salidas</option>
-                                            <option value="">Transporte</option>
-                                            <option value="">Trabajo</option>
-                                            <option value="">Comida</option>
-                                            <option value="">Educación</option>
+                                        <select class="categorias-select" id="editar-categorias-select">
+                                            <!-- Options desde JS -->
                                         </select>
                                     </div>
                                 </div>
@@ -338,7 +333,7 @@
                             <div id="sin-reportes" class="">
                                 <div class="my-6 py-6">
                                     <figure class="image">
-                                        <img src="https://frontend-proyecto-ahorradas.adaitw.org/imgs/chart.svg" class="" alt="">
+                                        <img src="/img/sin-reportes.svg" alt="Estado sin reportes">
                                     </figure>
                                     <h4 class="is-size-4 has-text-centered mt-6 mb-4 has-text-weight-semibold">
                                         Operaciones insuficientes
@@ -544,25 +539,8 @@
                                 <div class="control">
                                     <div class="select is-fullwidth">
                                         <!-- categorias -->
-                                        <select class="categorias-select" id="categorias-select">
-                                            <option value="">
-                                                Comida
-                                            </option>
-                                            <option value="">
-                                                Servicios
-                                            </option>
-                                            <option value="">
-                                                Salidas
-                                            </option>
-                                            <option value="">
-                                                Educación
-                                            </option>
-                                            <option value="">
-                                                Transporte
-                                            </option>
-                                            <option value="">
-                                                Trabajo
-                                            </option>
+                                        <select class="categorias-select" id="nueva-operacion-categorias-select">
+                                            <!-- Options desde JS -->
                                         </select>
                                     </div>
                                 </div>
