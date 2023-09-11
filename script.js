@@ -206,3 +206,13 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     aniadirOperacion();
     mostrarVista('seccion-balance');
 });
+
+// BOTÓN CANCELAR NUEVA OPERACIÓN
+$('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
+    mostrarVista('seccion-balance');
+    $('#descripcion-input').value = '';
+    $('#categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').value = '';
+    $('#monto-input').value = '0';
+    $('#tipo-operacion').selectedIndex = 0;
+});
