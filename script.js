@@ -177,3 +177,20 @@ const filtrarPorTipo = (listaOperaciones, tipoOperacion) => {
 const filtrarPorCategoria = (operaciones, categoria) => {
     return operaciones.filter((operacion) => operacion.categoria === categoria);
 }
+
+$("#filtro-tipo").addEventListener("change", () => aplicarFiltros);
+
+const aplicarFiltros = () => {
+    // Aca debemos llamar todas las funciones por tipo de filtro
+    // Guardamos las operaciones que existan pero sin modificar el original
+    let operacionesFiltradas = [...operaciones];
+    let filtroTipo = $("#filtro-tipo").value;
+    let filtroCategoria = $("#filtro-categoria").value;
+
+    operacionesFiltradas = filtrarPorTipo(operaciones, filtroTipo);
+    operacionesFiltradas = filtrarPorCategoria(operaciones, filtroCategoria)
+
+    // Suponiendo que tenemos una funcion que pinte todas las operaciones
+    // De este forma solo pinta las operaciones que pasaron los filtros
+    mostrarOperaciones(operacionesFiltradas);
+}
