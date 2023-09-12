@@ -188,6 +188,15 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
 });
 
+$('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
+    mostrarVista('seccion-balance');
+    $('#descripcion-operacion').value = '';
+    $('#monto-input').value = '0';
+    $('#tipo-operacion').selectedIndex = 0;
+    $('#nueva-operacion-categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').value = '';
+})
+
 // SECCION DE FILTROS ---------------------------
 
 // Debemos crear una funcion por cada filtro
