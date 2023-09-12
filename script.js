@@ -42,12 +42,12 @@ $('#toggle-filtros').addEventListener('click', () => {
     const toggle = $('#toggle-filtros')
     const filtros = $('#container-filtros')
 
-        if (toggle.innerText === 'Ocultar filtros') {
-            toggle.innerText = 'Mostrar filtros'
-            filtros.classList.toggle('is-hidden');
+    if (toggle.innerText === 'Ocultar filtros') {
+        toggle.innerText = 'Mostrar filtros'
+        filtros.classList.add('is-hidden')
         } else {
-            toggle.innerText = 'Ocultar filtros'
-            filtros.classList.toggle('is-hidden');
+        toggle.innerText = 'Ocultar filtros'
+        filtros.classList.remove('is-hidden')
         }
 });
 
