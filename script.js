@@ -123,8 +123,7 @@ const obtenerCategoria = (idCategoria, categorias) => {
 
 //ABRE EL MODAL PARA EDITAR LA CATEGORIA, APARECE EL INPUT CON EL VALUE DE LA MISMA
 const showEditCategory = (id) => {
-    $("#vista-editar-categoria").classList.remove("is-hidden");
-    $("#seccion-categorias").classList.toggle("is-hidden");
+    mostrarVista('vista-editar-categoria')
     let categoriaAEditar = obtenerCategoria(id, traerCategorias());
     $("#editar-categoria-input").value = categoriaAEditar.nombre;
     $("#editar-categoria-boton").addEventListener("click", () =>
@@ -142,6 +141,7 @@ const editCategory = (id) => {
         categoria.id === id ? { ...nuevaCategoria } : categoria
     );
     actualizarCategorias(categoriasActualizadas);
+    mostrarVista('seccion-categorias')
 };
 
 // ACTUALIZA LA LISTA CON LAS CATEGORIAS
