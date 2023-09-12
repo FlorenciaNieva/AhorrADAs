@@ -173,6 +173,21 @@ const traerOperaciones = () => {
     return traerDatos()?.operaciones;
 }
 
+const operaciones = traerOperaciones() || [];
+
+$('#agregar-operacion-boton').addEventListener('click', () => {
+    let nuevaOperacion = {
+        id: randomId(),
+        descripcion: $('#descripcion-operacion').value,
+        monto: $('#monto-input').value,
+        tipo: $('#tipo-operacion').value,
+        categoria: $('#nueva-operacion-categorias-select').value,
+        fecha: $('#fecha-input-operacion').value,
+    }
+    subirDatos ( {operaciones: [...operaciones, nuevaOperacion]} );
+    mostrarVista('seccion-balance');
+});
+
 // SECCION DE FILTROS ---------------------------
 
 // Debemos crear una funcion por cada filtro
