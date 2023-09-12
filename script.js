@@ -167,6 +167,12 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
         actualizarCategorias(categoriasActualizadas);
     }
 
+//AGREGAR NUEVA OPERACIÓN 
+
+const traerOperaciones = () => {
+    return traerDatos()?.operaciones;
+}
+
 // SECCION DE FILTROS ---------------------------
 
 // Debemos crear una funcion por cada filtro
