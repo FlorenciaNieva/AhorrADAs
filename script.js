@@ -229,6 +229,19 @@ const completarOperaciones = (operaciones) => {
 }
 completarOperaciones(operaciones);
 
+// VISTA OPERACIONES CON O SIN OPERACIONES
+const vistaOperaciones = () => {
+    if (!traerDatos()?.operaciones.length) {
+        $('#con-operacion').classList.add('is-hidden');
+        $('#sin-operacion').classList.remove('is-hidden');
+        return;
+    } else {
+        $('#con-operacion').classList.remove('is-hidden');
+        $('#sin-operacion').classList.add('is-hidden');
+    }
+}
+vistaOperaciones();
+
 // SECCION DE FILTROS ---------------------------
 
 // Debemos crear una funcion por cada filtro
