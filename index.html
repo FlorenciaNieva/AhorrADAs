@@ -56,45 +56,45 @@
         <section class="section vista" id="seccion-balance">
             <div class="container mt-5">
                 <div class="columns is-multiline is-flex is-justify-content-center">
-                    <div class="column is-flex is-flex-direction-column is-3">
+                    <div class="column is-flex is-flex-direction-column is-12-mobile is-3-widescreen is-4-desktop is-12-tablet is-offset-1-widescreen">
                         <!-- APARTADO BALANCE -->
                         <div class="box">
                             <h2 class="title is-3 mb-6 has-text-weight-bold">Balance</h2>
                             <!-- Ganancias -->
-                            <div class="columns">
+                            <div class="columns is-mobile">
                                 <div class="column">
                                     <h4 class="subtitle is-5">Ganancias</h4>
                                 </div>
                                 <div class="column">
-                                    <h4 class="subtitle is-6 has-text-right-tablet has-text-success">+$0</h4>
+                                    <h4 class="subtitle is-6 has-text-right has-text-success">+$0</h4>
                                 </div>
                             </div>
                             <!-- Gastos -->
-                            <div class="columns">
+                            <div class="columns is-mobile">
                                 <div class="column mb-3">
                                     <h4 class="subtitle is-5">Gastos</h4>
                                 </div>
                                 <div class="column">
-                                    <h4 class="subtitle is-6 has-text-right-tablet has-text-danger">-$0</h4>
+                                    <h4 class="subtitle is-6 has-text-right has-text-danger">-$0</h4>
                                 </div>
                             </div>
                             <!-- Total -->
-                            <div class="columns">
+                            <div class="columns is-mobile">
                                 <div class="column">
                                     <h4 class="subtitle is-4">Total</h4>
                                 </div>
                                 <div class="column">
-                                    <h4 class="subtitle is-6 has-text-right-tablet has-text-black"><strong>$0</strong></h4>
+                                    <h4 class="subtitle is-6 has-text-right has-text-black"><strong>$0</strong></h4>
                                 </div>
                             </div>
                         </div>
                         <!-- APARTADO FILTROS -->
                         <div class="box">
-                            <div class="columns">
+                            <div class="columns is-mobile is-vcentered">
                                 <div class="column">
                                     <h2 class="title is-4 has-text-weight-bold">Filtros</h2>
                                 </div>
-                                <div class="column">
+                                <div class="column has-text-right">
                                     <button class="button edit-btn is-ghost" id="toggle-filtros">Ocultar filtros</button>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column is-7">
+                    <div class="column is-7-widescreen is-8-desktop">
                         <!-- APARTADO OPERACIONES -->
                         <div class="box">
                             <!-- Titulo y boton de nueva operacion -->
@@ -178,24 +178,14 @@
                                 </div>
                             </div>
                             <div class="is-hidden" id="con-operacion">
-                                <div class="columns">
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold">Descripción</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold">Categoría</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Fecha</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Monto</h4>
-                                    </div>
-                                    <div class="column">
-                                        <h4 class="has-text-weight-semibold has-text-right">Acciones</h4>
-                                    </div>
+                                <div class="columns is-hidden-mobile has-text-weight-semibold">
+                                    <div class="column is-3">Descripción</div>
+                                    <div class="column is-3">Categoría</div>
+                                    <div class="column is-2 has-text-right">Fecha</div>
+                                    <div class="column is-2 has-text-right">Monto</div>
+                                    <div class="column is-2 has-text-right">Acciones</div>
                                 </div>
-                                <div class="columns is-flex-direction-column" id="operaciones">
+                                <div class="columns is-mobile is-multiline is-vcentered" id="operaciones">
                                     <!-- Añadir operaciones desde Javascript -->
                                 </div>
                             </div>
