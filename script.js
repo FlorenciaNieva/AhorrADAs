@@ -167,6 +167,68 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
         actualizarCategorias(categoriasActualizadas);
     }
 
+//AGREGAR NUEVA OPERACIÓN 
+
+const traerOperaciones = () => {
+    return traerDatos()?.operaciones;
+}
+
+const operaciones = traerOperaciones() || [];
+
+$('#agregar-operacion-boton').addEventListener('click', () => {
+    let nuevaOperacion = {
+        id: randomId(),
+        descripcion: $('#descripcion-operacion').value,
+        monto: $('#monto-input').value,
+        tipo: $('#tipo-operacion').value,
+        categoria: $("#nueva-operacion-categorias-select").value,
+        fecha: $('#fecha-input-operacion').value,
+    }
+    subirDatos ( {operaciones: [...operaciones, nuevaOperacion]} );
+    mostrarVista('seccion-balance');
+});
+
+$('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
+    mostrarVista('seccion-balance');
+    $('#descripcion-operacion').value = '';
+    $('#monto-input').value = '0';
+    $('#tipo-operacion').selectedIndex = 0;
+    $('#nueva-operacion-categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').value = '';
+})
+
+const completarOperaciones = (operaciones) => {
+    $('#operaciones').innerHTML = "";
+    for (let operacion of operaciones) {
+        const categoria = operacion.categoria; // Arreglar
+        const fecha = new Date(operacion.fecha);
+        $('#operaciones').innerHTML += `
+        <div class="column is-flex">
+            <div class="column">
+                <h4 class="has-text-weight-semibold">${operacion.descripcion}</h4>
+            </div>
+            <div class="column"> 
+                <span class="tag is-primary is-light">${categoria}</span>
+            </div>
+            <div class="column">
+                <h4 class=" subtitle is-6 has-text-right">${fecha.getDate() + 1}/${fecha.getMonth() + 1}/${fecha.getFullYear()}</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right ${operacion.tipo === 'GANANCIA' ? 'has-text-success' : 'has-text-danger'}"" id="monto-operacion">${operacion.tipo === 'GANANCIA' ? '+' : '-'}$${
+                    operacion.monto}</h4>
+            </div>
+            <div class="column is-2-tablet is-6-mobile has-text-right">
+                <p class="is-fullwidth">
+                    <a href="#" class="edit-link is-size-7 mr-3">Editar</a>
+                    <a href="#" class="delete-link is-size-7">Eliminar</b>
+                </p>
+            </div>
+        </div>
+        `;
+    } 
+}
+completarOperaciones(operaciones);
+
 // SECCION DE FILTROS ---------------------------
 
 // Debemos crear una funcion por cada filtro
