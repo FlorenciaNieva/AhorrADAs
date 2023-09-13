@@ -194,3 +194,12 @@ const aplicarFiltros = () => {
     // De este forma solo pinta las operaciones que pasaron los filtros
     mostrarOperaciones(operacionesFiltradas);
 }
+
+// ACTUALIZACIÓN DE FECHA
+const fechaActualizada = () => {
+    const inputsFecha = $$('input[type="date"]');
+    inputsFecha.forEach((input) => {
+        input.valueAsDate = new Date();
+    });
+}
+fechaActualizada();
