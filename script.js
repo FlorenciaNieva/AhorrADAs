@@ -185,6 +185,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
         fecha: $('#fecha-input-operacion').value,
     }
     subirDatos ( {operaciones: [...operaciones, nuevaOperacion]} );
+    completarOperaciones([...operaciones, nuevaOperacion]);
     mostrarVista('seccion-balance');
 });
 
@@ -214,8 +215,7 @@ const completarOperaciones = (operaciones) => {
                 <h4 class=" subtitle is-6 has-text-right">${fecha.getDate() + 1}/${fecha.getMonth() + 1}/${fecha.getFullYear()}</h4>
             </div>
             <div class="column">
-                <h4 class="has-text-weight-semibold has-text-right ${operacion.tipo === 'GANANCIA' ? 'has-text-success' : 'has-text-danger'}"" id="monto-operacion">${operacion.tipo === 'GANANCIA' ? '+' : '-'}$${
-                    operacion.monto}</h4>
+                <h4 class="has-text-weight-semibold has-text-right ${operacion.tipo === 'GANANCIA' ? 'has-text-success' : 'has-text-danger'}"" id="monto-operacion">${operacion.tipo === 'GANANCIA' ? '+' : '-'}$${operacion.monto}</h4>
             </div>
             <div class="column is-2-tablet is-6-mobile has-text-right">
                 <p class="is-fullwidth">
