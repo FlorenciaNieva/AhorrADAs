@@ -185,6 +185,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
         fecha: $('#fecha-input-operacion').value,
     }
     subirDatos ( {operaciones: [...operaciones, nuevaOperacion]} );
+    completarOperaciones([...operaciones, nuevaOperacion]);
     mostrarVista('seccion-balance');
 });
 
@@ -200,7 +201,7 @@ $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
 const completarOperaciones = (operaciones) => {
     $('#operaciones').innerHTML = "";
     for (let operacion of operaciones) {
-        const categoria = operacion.categoria; // Arreglar
+        const categoria = obtenerCategoria(operacion.categoria, traerCategorias()).nombre;
         const fecha = new Date(operacion.fecha);
         $('#operaciones').innerHTML += `
             <div class="column is-3-tablet is-6-mobile">
