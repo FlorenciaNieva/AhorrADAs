@@ -79,6 +79,11 @@ let categorias = traerCategorias() || [
 const llenarSelect = (categories) => {
     $$(".categorias-select").forEach((select) => {
         select.innerHTML = "";
+
+    if (select.classList.contains("todos-filtros")) {
+        select.innerHTML += `<option>Todas</option>`;
+    }
+
     for (let { nombre, id } of categories) {
         select.innerHTML += `<option value="${id}">${nombre}</option>`;
     }
@@ -268,14 +273,15 @@ const fechaActualizada = () => {
 
 // INICIALIZACIÓN
 const inicializarPagina = () => {
-    if (!traerCategorias() || traerCategorias().length === 0) {
-        return subirDatos({ categorias });
-    }
+    fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
     completarOperaciones(operaciones);
     vistaOperaciones();
-    fechaActualizada();
+}
+
+if (!traerCategorias() || traerCategorias().length === 0) {
+    subirDatos({ categorias });
 }
 
 window.addEventListener('load', inicializarPagina);
