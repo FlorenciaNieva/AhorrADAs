@@ -221,6 +221,7 @@ const completarOperaciones = (operaciones) => {
             </div>
         `;
     } 
+    vistaOperaciones();
 }
 
 // VISTA OPERACIONES CON O SIN OPERACIONES
@@ -277,7 +278,6 @@ const inicializarPagina = () => {
     llenarSelect(categorias);
     listaCategorias(categorias);
     completarOperaciones(operaciones);
-    vistaOperaciones();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
