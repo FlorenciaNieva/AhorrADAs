@@ -79,6 +79,11 @@ let categorias = traerCategorias() || [
 const llenarSelect = (categories) => {
     $$(".categorias-select").forEach((select) => {
         select.innerHTML = "";
+
+    if (select.classList.contains("todos-filtros")) {
+        select.innerHTML += `<option>Todas</option>`;
+    }
+
     for (let { nombre, id } of categories) {
         select.innerHTML += `<option value="${id}">${nombre}</option>`;
     }
