@@ -265,7 +265,6 @@ const fechaActualizada = () => {
         input.valueAsDate = new Date();
     });
 }
-fechaActualizada();
 
 // INICIALIZACIÓN
 const inicializarPagina = () => {
@@ -276,6 +275,7 @@ const inicializarPagina = () => {
     listaCategorias(categorias);
     completarOperaciones(operaciones);
     vistaOperaciones();
+    fechaActualizada();
 }
 
 window.addEventListener('load', inicializarPagina);
