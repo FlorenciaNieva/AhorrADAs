@@ -221,11 +221,12 @@ const completarOperaciones = (operaciones) => {
             </div>
         `;
     } 
+    vistaOperaciones();
 }
 
 // VISTA OPERACIONES CON O SIN OPERACIONES
 const vistaOperaciones = () => {
-    if (traerDatos()?.operaciones.length > 0) {
+    if (operaciones?.length > 0) {
         $('#con-operacion').classList.remove('is-hidden');
         $('#sin-operacion').classList.add('is-hidden');
         return;
@@ -277,7 +278,6 @@ const inicializarPagina = () => {
     llenarSelect(categorias);
     listaCategorias(categorias);
     completarOperaciones(operaciones);
-    vistaOperaciones();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
