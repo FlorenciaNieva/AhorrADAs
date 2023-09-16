@@ -273,14 +273,15 @@ const fechaActualizada = () => {
 
 // INICIALIZACIÓN
 const inicializarPagina = () => {
-    if (!traerCategorias() || traerCategorias().length === 0) {
-        return subirDatos({ categorias });
-    }
+    fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
     completarOperaciones(operaciones);
     vistaOperaciones();
-    fechaActualizada();
+}
+
+if (!traerCategorias() || traerCategorias().length === 0) {
+    subirDatos({ categorias });
 }
 
 window.addEventListener('load', inicializarPagina);
