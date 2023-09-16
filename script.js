@@ -85,9 +85,6 @@ const llenarSelect = (categories) => {
     });
 };
 
-//NO SE DEBEN DEJAR FUNCIONES SUELTAS, REALIZAR FUNCION INICIALIZAR
-llenarSelect(categorias);
-
 const datos = traerDatos() || {
     categorias: [],
     operaciones: [],
@@ -110,8 +107,6 @@ const listaCategorias = (categorias) => {
     </div>`
     }
 }
-
-listaCategorias(categorias);
 
 //DEVUELVE LA CATEGORIA CON EL MISMO ID 
 const obtenerCategoria = (idCategoria, categorias) => {
@@ -222,7 +217,6 @@ const completarOperaciones = (operaciones) => {
         `;
     } 
 }
-completarOperaciones(operaciones);
 
 // VISTA OPERACIONES CON O SIN OPERACIONES
 const vistaOperaciones = () => {
@@ -235,7 +229,6 @@ const vistaOperaciones = () => {
         $('#sin-operacion').classList.remove('is-hidden');
     }
 }
-vistaOperaciones();
 
 // SECCION DE FILTROS ---------------------------
 
@@ -272,4 +265,17 @@ const fechaActualizada = () => {
         input.valueAsDate = new Date();
     });
 }
-fechaActualizada();
+
+// INICIALIZACIÓN
+const inicializarPagina = () => {
+    if (!traerCategorias() || traerCategorias().length === 0) {
+        return subirDatos({ categorias });
+    }
+    llenarSelect(categorias);
+    listaCategorias(categorias);
+    completarOperaciones(operaciones);
+    vistaOperaciones();
+    fechaActualizada();
+}
+
+window.addEventListener('load', inicializarPagina);
