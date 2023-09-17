@@ -164,14 +164,14 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
         actualizarCategorias(categoriasActualizadas);
     }
 
-//AGREGAR NUEVA OPERACIÓN 
-
+//SECCIÓN OPERACIONES --------------------------
 const traerOperaciones = () => {
     return traerDatos()?.operaciones;
 }
 
-const operaciones = traerOperaciones() || [];
+let operaciones = traerOperaciones() || [];
 
+// AGREGAR NUEVA OPERACIÓN
 $('#agregar-operacion-boton').addEventListener('click', () => {
     let nuevaOperacion = {
         id: randomId(),
@@ -181,20 +181,29 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
         categoria: $("#nueva-operacion-categorias-select").value,
         fecha: $('#fecha-input-operacion').value,
     }
-    subirDatos ( {operaciones: [...operaciones, nuevaOperacion]} );
-    completarOperaciones([...operaciones, nuevaOperacion]);
+    operaciones.push(nuevaOperacion)
+    subirDatos ({ operaciones });
+    completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
+    // Reestablecer los campos de entrada
+    $('#descripcion-operacion').value = '';
+    $('#monto-input').value = '0';
+    $('#tipo-operacion').selectedIndex = 0;
+    $('#nueva-operacion-categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').valueAsDate = new Date();
 });
 
+// BOTÓN DE CANCELAR NUEVA OPERACIÓN
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
     $('#descripcion-operacion').value = '';
     $('#monto-input').value = '0';
     $('#tipo-operacion').selectedIndex = 0;
     $('#nueva-operacion-categorias-select').selectedIndex = 0;
-    $('#fecha-input-operacion').value = '';
+    $('#fecha-input-operacion').valueAsDate = new Date();
 })
 
+// COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
 const completarOperaciones = (operaciones) => {
     $('#operaciones').innerHTML = "";
     for (let operacion of operaciones) {
@@ -215,7 +224,7 @@ const completarOperaciones = (operaciones) => {
             </div>
             <div class="column is-2-tablet is-6-mobile has-text-right">
                 <p class="is-fullwidth">
-                    <a href="#" class="edit-link is-size-7 mr-3">Editar</a>
+                <a href="#" onclick="cargarDatosOperacion('${operacion.id}')" class="edit-link is-size-7 mr-3" id="${operacion.id}">Editar</a>
                     <a href="#" class="delete-link is-size-7">Eliminar</b>
                 </p>
             </div>
@@ -224,7 +233,7 @@ const completarOperaciones = (operaciones) => {
     vistaOperaciones();
 }
 
-// VISTA OPERACIONES CON O SIN OPERACIONES
+// INTERCAMBIA LA VISTA CON O SIN OPERACIONES DEPENDIENDO SI HAY O NO OPERACIONES GUARDADAS
 const vistaOperaciones = () => {
     if (operaciones?.length > 0) {
         $('#con-operacion').classList.remove('is-hidden');
@@ -235,6 +244,60 @@ const vistaOperaciones = () => {
         $('#sin-operacion').classList.remove('is-hidden');
     }
 }
+
+// DEVUELVE LA OPERACIÓN QUE TENGA EL MISMO ID 
+const obtenerOperacion = (idOperacion, operaciones) => {
+    return operaciones.find((operacion) => operacion.id === idOperacion);
+};
+
+// SE ENCARGA DE EDITAR LA OPERACIÓN QUE COINCIDA CON EL ID DADO
+const editarOperacionElegida = (idOperacion, operacionNueva, operaciones) => {
+    return operaciones.map((operacion) => operacion.id === idOperacion ? { id: operacion.id, ...operacionNueva } : operacion)
+};
+
+// BUSCA LOS NUEVOS VALORES DADOS AL EDITAR LA OPERACIÓN Y LOS ACTUALIZA
+const editarOperacion = (id) => {
+    const descripcion = $('#editar-descripcion-operacion').value;
+    const monto = $('#editar-monto-input').value;
+    const categoria = $('#editar-categorias-select').value;
+    const tipo = $('#editar-tipo-operacion').value;
+    const fecha = $('#editar-fecha-operacion').value;
+
+    const operacionesActualizadas = editarOperacionElegida(
+        id,
+        {
+        descripcion,
+        monto,
+        categoria,
+        tipo,
+        fecha,
+        },
+        operaciones,
+    )
+    operaciones = operacionesActualizadas;
+    completarOperaciones(operacionesActualizadas);
+    subirDatos({ operaciones: operacionesActualizadas });
+};
+
+// PASA LOS VALORES DE LA OPERACIÓN A LOS CAMPOS DE LA SECCIÓN EDITAR OPERACIÓN
+const cargarDatosOperacion = (id) => {
+    mostrarVista('vista-editar-operaciones');
+    const operacion = obtenerOperacion(id, traerOperaciones());
+    $('#editar-descripcion-operacion').value = operacion.descripcion;
+    $('#editar-monto-input').value = operacion.monto;
+    $('#editar-tipo-operacion').value = operacion.tipo;
+    $('#editar-categorias-select').value = operacion.categoria;
+    $('#editar-fecha-operacion').value = operacion.fecha;
+    $("#boton-editar-operacion").onclick = () => {
+        editarOperacion(id);
+        mostrarVista('seccion-balance');
+    };
+};
+
+// BOTÓN DE CANCELAR EDITAR OPERACIÓN
+$('#boton-cancelar-editar-operacion').addEventListener('click', () => {
+    mostrarVista('seccion-balance');
+});  
 
 // SECCION DE FILTROS ---------------------------
 
