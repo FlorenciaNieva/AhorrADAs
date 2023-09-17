@@ -164,14 +164,14 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
         actualizarCategorias(categoriasActualizadas);
     }
 
-//AGREGAR NUEVA OPERACIÓN 
-
+//SECCIÓN OPERACIONES 
 const traerOperaciones = () => {
     return traerDatos()?.operaciones;
 }
 
 let operaciones = traerOperaciones() || [];
 
+// AGREGAR NUEVA OPERACIÓN
 $('#agregar-operacion-boton').addEventListener('click', () => {
     let nuevaOperacion = {
         id: randomId(),
@@ -193,6 +193,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     $('#fecha-input-operacion').valueAsDate = new Date();
 });
 
+// BOTÓN DE CANCELAR NUEVA OPERACIÓN
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
     $('#descripcion-operacion').value = '';
@@ -202,6 +203,7 @@ $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     $('#fecha-input-operacion').valueAsDate = new Date();
 })
 
+// COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
 const completarOperaciones = (operaciones) => {
     $('#operaciones').innerHTML = "";
     for (let operacion of operaciones) {
@@ -231,7 +233,7 @@ const completarOperaciones = (operaciones) => {
     vistaOperaciones();
 }
 
-// VISTA OPERACIONES CON O SIN OPERACIONES
+// INTERCAMBIA LA VISTA CON O SIN OPERACIONES DEPENDIENDO SI HAY O NO OPERACIONES GUARDADAS
 const vistaOperaciones = () => {
     if (operaciones?.length > 0) {
         $('#con-operacion').classList.remove('is-hidden');
