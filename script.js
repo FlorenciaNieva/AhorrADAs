@@ -199,7 +199,7 @@ $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     $('#monto-input').value = '0';
     $('#tipo-operacion').selectedIndex = 0;
     $('#nueva-operacion-categorias-select').selectedIndex = 0;
-    $('#fecha-input-operacion').value = '';
+    $('#fecha-input-operacion').valueAsDate = new Date();
 })
 
 const completarOperaciones = (operaciones) => {
