@@ -170,7 +170,7 @@ const traerOperaciones = () => {
     return traerDatos()?.operaciones;
 }
 
-const operaciones = traerOperaciones() || [];
+let operaciones = traerOperaciones() || [];
 
 $('#agregar-operacion-boton').addEventListener('click', () => {
     let nuevaOperacion = {
@@ -181,8 +181,9 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
         categoria: $("#nueva-operacion-categorias-select").value,
         fecha: $('#fecha-input-operacion').value,
     }
-    subirDatos ( {operaciones: [...operaciones, nuevaOperacion]} );
-    completarOperaciones([...operaciones, nuevaOperacion]);
+    operaciones.push(nuevaOperacion)
+    subirDatos ({ operaciones });
+    completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
 });
 
