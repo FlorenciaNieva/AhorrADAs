@@ -185,6 +185,12 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     subirDatos ({ operaciones });
     completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
+    // Reestablecer los campos de entrada
+    $('#descripcion-operacion').value = '';
+    $('#monto-input').value = '0';
+    $('#tipo-operacion').selectedIndex = 0;
+    $('#nueva-operacion-categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').valueAsDate = new Date();
 });
 
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
