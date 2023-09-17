@@ -224,8 +224,8 @@ const completarOperaciones = (operaciones) => {
             </div>
             <div class="column is-2-tablet is-6-mobile has-text-right">
                 <p class="is-fullwidth">
-                <a href="#" onclick="cargarDatosOperacion('${operacion.id}')" class="edit-link is-size-7 mr-3" id="${operacion.id}">Editar</a>
-                    <a href="#" class="delete-link is-size-7">Eliminar</b>
+                    <a href="#" onclick="cargarDatosOperacion('${operacion.id}')" class="edit-link is-size-7 mr-3" id="${operacion.id}">Editar</a>
+                    <a href="#" onclick="eliminarOperacion('${operacion.id}')" class="delete-link is-size-7" id="${operacion.id}">Eliminar</a>
                 </p>
             </div>
         `;
@@ -298,6 +298,14 @@ const cargarDatosOperacion = (id) => {
 $('#boton-cancelar-editar-operacion').addEventListener('click', () => {
     mostrarVista('seccion-balance');
 });  
+
+//ELIMINAR OPERACIONES
+const eliminarOperacion = (idOperacion) => {
+    const operacionesActualizadas = operaciones.filter((operacion) => operacion.id !== idOperacion);
+    operaciones = operacionesActualizadas;
+    subirDatos({ operaciones: operacionesActualizadas });
+    completarOperaciones(operacionesActualizadas);
+}
 
 // SECCION DE FILTROS ---------------------------
 
