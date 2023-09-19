@@ -137,15 +137,21 @@ const editCategory = (id) => {
     let categoriasActualizadas = traerCategorias().map((categoria) =>
         categoria.id === id ? { ...nuevaCategoria } : categoria
     );
-    actualizarCategorias(categoriasActualizadas);
+    subirDatos({categorias: categoriasActualizadas})
+    actualizarVistas(traerDatos());
     mostrarVista('seccion-categorias')
 };
 
+//BOTON PARA CANCELAR EDITAR CATEGORIAS
+$("#cancelar-categoria-boton").addEventListener(`click`, () => {
+    mostrarVista('seccion-categorias')
+})
+
 // ACTUALIZA LA LISTA CON LAS CATEGORIAS
-const actualizarCategorias = (categoriasActualizadas) => {
-    listaCategorias(categoriasActualizadas);
-    llenarSelect(categoriasActualizadas);
-    subirDatos({ categorias: categoriasActualizadas });
+const actualizarVistas = (datos) => {
+    listaCategorias(datos.categorias);
+    llenarSelect(datos.categorias);
+    // completarOperaciones(datos.operaciones);
 }
 
 // SE AGREGA LA NUEVA CATEGORIA
@@ -154,14 +160,16 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
                 id: randomId(),
                 nombre: $("#categoria-input").value,
             };
-            let categoriasActualizadas = [...categorias, nuevaCategoria]; 
-            actualizarCategorias(categoriasActualizadas);
+            let categoriasActualizadas = [...categorias, nuevaCategoria];
+            subirDatos({categorias: categoriasActualizadas})
+            actualizarVistas(traerDatos());
 });
 
 // SE ELIMINA LA CATEGORIA
     const removeCategory = (id) => {
         let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
-        actualizarCategorias(categoriasActualizadas);
+        subirDatos({categorias: categoriasActualizadas})
+        actualizarVistas(traerDatos());
     }
 
 //SECCIÓN OPERACIONES --------------------------
