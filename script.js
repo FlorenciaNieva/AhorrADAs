@@ -162,6 +162,11 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
     const removeCategory = (id) => {
         let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
         actualizarCategorias(categoriasActualizadas);
+        // eliminar todas las operaciones relacionadas con la categoria eliminada
+        let operacionesActualizadas = operaciones.filter((operacion) => operacion.categoria != id);
+        operaciones = operacionesActualizadas;
+        subirDatos({ operacions: operacionesActualizadas });
+        completarOperaciones(operacionesActualizadas);
     }
 
 //SECCIÓN OPERACIONES --------------------------
