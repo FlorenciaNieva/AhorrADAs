@@ -142,11 +142,16 @@ const editCategory = (id) => {
     mostrarVista('seccion-categorias')
 };
 
+//BOTON PARA CANCELAR EDITAR CATEGORIAS
+$("#cancelar-categoria-boton").addEventListener(`click`, () => {
+    mostrarVista('seccion-categorias')
+})
+
 // ACTUALIZA LA LISTA CON LAS CATEGORIAS
 const actualizarVistas = (datos) => {
     listaCategorias(datos.categorias);
     llenarSelect(datos.categorias);
-    completarOperaciones(datos.operaciones);
+    // completarOperaciones(datos.operaciones);
 }
 
 // SE AGREGA LA NUEVA CATEGORIA
