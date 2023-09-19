@@ -142,10 +142,10 @@ const editCategory = (id) => {
 };
 
 // ACTUALIZA LA LISTA CON LAS CATEGORIAS
-const actualizarCategorias = (categoriasActualizadas) => {
-    listaCategorias(categoriasActualizadas);
-    llenarSelect(categoriasActualizadas);
-    subirDatos({ categorias: categoriasActualizadas });
+const actualizarVistas = (datos) => {
+    listaCategorias(datos.categorias);
+    llenarSelect(datos.categorias);
+    completarOperaciones(datos.operaciones);
 }
 
 // SE AGREGA LA NUEVA CATEGORIA
