@@ -90,11 +90,6 @@ const llenarSelect = (categories) => {
     });
 };
 
-const datos = traerDatos() || {
-    categorias: [],
-    operaciones: [],
-};
-
 //COMPLETA LA LISTA DE CATEGORIAS
 const listaCategorias = (categorias) => {
     $("#categorias").innerHTML = "";
