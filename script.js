@@ -337,15 +337,13 @@ const ordernarPorFecha = (operaciones, orden) => {
     return [...operaciones].sort((a, b) => {
         const fechaA = new Date(a.fecha)
         const fechaB = new Date(b.fecha)
-        return orden === 'ASC'
-        ? fechaA.getTime() - fechaB.getTime()
-        : fechaB.getTime() - fechaA.getTime()
+        return orden === 'ASC'? fechaA.getTime() - fechaB.getTime() : fechaB.getTime() - fechaA.getTime();
     })
 }
 //MONTO
 const ordernarPorMonto = (operaciones, orden) => {
     return [...operaciones].sort((a, b) => {
-        return orden === 'ASC' ? a.monto - b.monto : b.monto - a.monto
+        return orden === 'ASC' ? a.monto - b.monto : b.monto - a.monto;
     })
 }
 //DESCRIPCION
