@@ -184,7 +184,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     let nuevaOperacion = {
         id: randomId(),
         descripcion: $('#descripcion-operacion').value,
-        monto: $('#monto-input').value,
+        monto: Number($('#monto-input').value),
         tipo: $('#tipo-operacion').value,
         categoria: $("#nueva-operacion-categorias-select").value,
         fecha: $('#fecha-input-operacion').value,
@@ -193,9 +193,10 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     subirDatos ({ operaciones });
     completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
+    actualizarBalance(traerOperaciones());
     // Reestablecer los campos de entrada
     $('#descripcion-operacion').value = '';
-    $('#monto-input').value = '0';
+    $('#monto-input').value = 0;
     $('#tipo-operacion').selectedIndex = 0;
     $('#nueva-operacion-categorias-select').selectedIndex = 0;
     $('#fecha-input-operacion').valueAsDate = new Date();
@@ -205,7 +206,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
     $('#descripcion-operacion').value = '';
-    $('#monto-input').value = '0';
+    $('#monto-input').value = 0;
     $('#tipo-operacion').selectedIndex = 0;
     $('#nueva-operacion-categorias-select').selectedIndex = 0;
     $('#fecha-input-operacion').valueAsDate = new Date();
@@ -266,7 +267,7 @@ const editarOperacionElegida = (idOperacion, operacionNueva, operaciones) => {
 // BUSCA LOS NUEVOS VALORES DADOS AL EDITAR LA OPERACIÓN Y LOS ACTUALIZA
 const editarOperacion = (id) => {
     const descripcion = $('#editar-descripcion-operacion').value;
-    const monto = $('#editar-monto-input').value;
+    const monto = Number($('#editar-monto-input').value);
     const categoria = $('#editar-categorias-select').value;
     const tipo = $('#editar-tipo-operacion').value;
     const fecha = $('#editar-fecha-operacion').value;
@@ -285,6 +286,7 @@ const editarOperacion = (id) => {
     operaciones = operacionesActualizadas;
     completarOperaciones(operacionesActualizadas);
     subirDatos({ operaciones: operacionesActualizadas });
+    actualizarBalance(traerOperaciones());
 };
 
 // PASA LOS VALORES DE LA OPERACIÓN A LOS CAMPOS DE LA SECCIÓN EDITAR OPERACIÓN
@@ -313,6 +315,7 @@ const eliminarOperacion = (idOperacion) => {
     operaciones = operacionesActualizadas;
     subirDatos({ operaciones: operacionesActualizadas });
     completarOperaciones(operacionesActualizadas);
+    actualizarBalance(traerOperaciones());
 }
 
 // SECCION DE FILTROS ---------------------------
@@ -341,6 +344,40 @@ const aplicarFiltros = () => {
     // Suponiendo que tenemos una funcion que pinte todas las operaciones
     // De este forma solo pinta las operaciones que pasaron los filtros
     mostrarOperaciones(operacionesFiltradas);
+}
+
+// SECCIÓN BALANCE ------------------------------
+
+// CALCULA EL TOTAL DE LAS GANANCIAS, LOS GASTOS Y EL BALANCE
+const obtenerBalance = (operaciones) => {
+    const balanceInicial = { ganancias: 0, gastos: 0, balance: 0, };
+    const resultado = operaciones.reduce((balance, operacion) => {
+        if (operacion.tipo === 'GANANCIA') {
+            balance.ganancias += Number(operacion.monto);
+        } else if (operacion.tipo === 'GASTO') {
+            balance.gastos += Number(operacion.monto);
+        }
+        balance.balance = balance.ganancias - balance.gastos;
+        return balance;
+    }, balanceInicial);
+    return resultado;
+}
+
+// ACTUALIZA LOS VALORES DE LA SECCIÓN BALANCE 
+const actualizarBalance = (operaciones) => {
+    const { ganancias, gastos, balance } = obtenerBalance(operaciones);
+    $('#ganancias').textContent = `+$${Math.abs(ganancias)}`;
+    $('#gastos').textContent = `-$${Math.abs(gastos)}`;
+    $('#balance').classList.remove('has-text-danger', 'has-text-success');
+    let operador = '';
+    if (balance > 0) {
+        $('#balance').classList.add('has-text-success');
+        operador = '+';
+    } else if (balance < 0) {
+        $('#balance').classList.add('has-text-danger');
+        operador = '-';
+    }
+    $('#balance').textContent = `${operador}$${Math.abs(balance)}`;
 }
 
 // ACTUALIZACIÓN DE FECHA
