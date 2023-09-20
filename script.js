@@ -326,8 +326,6 @@ const eliminarOperacion = (idOperacion) => {
 //operacionesFiltradas = filtrarPorCategoria(operaciones, filtroCategoria);
 
 const filtrarPorTipo = (tipo, operaciones) => {
-    console.log(tipo); // gasto
-    console.log(operaciones); // array con operaciones
     return operaciones.filter((operacion) => operacion.tipo === tipo);
 }
 
@@ -335,14 +333,9 @@ $("#selector-tipo").addEventListener(`change`, () => aplicarFiltros());
 
 const aplicarFiltros = () => {
     let copiaOperaciones = [...operaciones];
-    console.log(copiaOperaciones) // ARRAY CON OPERACIONES
-    let filtroTipo = $("#selector-tipo").value; 
-    console.log(filtroTipo); // gasto
+    let filtroTipo = $("#selector-tipo").value;
     
-    operacionesFiltradas = filtrarPorTipo(filtroTipo, copiaOperaciones)
-    console.log(filtroTipo); // gasto
-    console.log(operaciones); // ARRAY CON OPERACIONES
-    console.log(operacionesFiltradas); // ARRAY VACIOS
+    operacionesFiltradas = filtrarPorTipo(filtroTipo, copiaOperaciones);
     
     completarOperaciones(operacionesFiltradas);
 }
