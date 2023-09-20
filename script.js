@@ -158,6 +158,7 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
             let categoriasActualizadas = [...categorias, nuevaCategoria];
             subirDatos({categorias: categoriasActualizadas})
             actualizarVistas(traerDatos());
+            $("#categoria-input").value = "";
 });
 
 // SE ELIMINA LA CATEGORIA
