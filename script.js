@@ -315,28 +315,101 @@ const eliminarOperacion = (idOperacion) => {
     completarOperaciones(operacionesActualizadas);
 }
 
-// SECCION DE FILTROS ---------------------------
-
-// const filtrarPorCategoria = (operaciones, categoria) => {
-//     return operaciones.filter((operacion) => operacion.categoria === categoria);
-// }
-
-//PARTE DE FILTRO CATEGORIAS
-//let filtroCategoria = $("#filtro-categorias-select").value;
-//operacionesFiltradas = filtrarPorCategoria(operaciones, filtroCategoria);
-
+// SECCION DE FILTROS
+// -------------------------- SELECT ORDENAR POR TIPO --------------------------
 const filtrarPorTipo = (tipo, operaciones) => {
     return operaciones.filter((operacion) => operacion.tipo === tipo);
 }
+// -------------------------- SELECT ORDENAR POR CATEGORIA --------------------------
+const filtrarPorCategoria = (idCategoria, operaciones) => {
+    return operaciones.filter((operacion) => operacion.categoria === idCategoria);
+}
+// -------------------------- SELECT ORDENAR DESDE --------------------------
+const filtrarPorFechaMayorOIgualA = (fecha, operaciones) => {
+    return operaciones.filter((operacion) => {
+        const fechaOperacion = new Date(operacion.fecha)
+        return fechaOperacion.getTime() >= fecha.getTime()
+    })
+}
+// -------------------------- SELECT ORDENAR POR --------------------------
+//FECHA
+const ordernarPorFecha = (operaciones, orden) => {
+    return [...operaciones].sort((a, b) => {
+        const fechaA = new Date(a.fecha)
+        const fechaB = new Date(b.fecha)
+        return orden === 'ASC'
+        ? fechaA.getTime() - fechaB.getTime()
+        : fechaB.getTime() - fechaA.getTime()
+    })
+}
+//MONTO
+const ordernarPorMonto = (operaciones, orden) => {
+    return [...operaciones].sort((a, b) => {
+        return orden === 'ASC' ? a.monto - b.monto : b.monto - a.monto
+    })
+}
+//DESCRIPCION
+const ordernarPorDescripcion = (operaciones, orden) => {
+    return [...operaciones].sort((a, b) => {
+        const descripcionA = a.descripcion.toLowerCase();
+        const descripcionB = b.descripcion.toLowerCase();
 
-$("#selector-tipo").addEventListener(`change`, () => aplicarFiltros());
+        if (orden === 'ASC') {
+            return descripcionA.localeCompare(descripcionB);
+        } else if (orden === 'DESC') {
+            return descripcionB.localeCompare(descripcionA);
+        }
+        return 0;
+    });
+};
 
-const aplicarFiltros = () => {
-    let copiaOperaciones = [...operaciones];
-    let filtroTipo = $("#selector-tipo").value;
-    
-    operacionesFiltradas = filtrarPorTipo(filtroTipo, copiaOperaciones);
-    
+$("#filtro-categorias-select").addEventListener(`change`, () => filtrarOperaciones());
+$("#selector-tipo").addEventListener(`change`, () => filtrarOperaciones());
+$("#input-fecha").addEventListener(`change`, () => filtrarOperaciones());
+$("#selector-ordenar").addEventListener(`change`, () => filtrarOperaciones());
+
+const filtrarOperaciones = () => {
+    const tipo = $('#selector-tipo').value;
+    const categoria = $('#filtro-categorias-select').value;
+    const fecha = new Date($('#input-fecha').value.replace(/-/g, '/'));
+    const orden = $('#selector-ordenar').value;
+
+    let operacionesFiltradas = [...operaciones];
+
+    if (tipo !== 'TODOS') {
+        operacionesFiltradas = filtrarPorTipo(tipo, operacionesFiltradas);
+        console.log(operacionesFiltradas, `1`);
+    }
+
+    if (categoria !== 'Todas') {
+        operacionesFiltradas = filtrarPorCategoria(categoria, operacionesFiltradas);
+        console.log(operacionesFiltradas, `2`);
+    }
+
+    operacionesFiltradas = filtrarPorFechaMayorOIgualA(fecha, operacionesFiltradas)
+
+    switch (orden) {
+        case 'MAS-RECIENTES':
+            operacionesFiltradas = ordernarPorFecha(operacionesFiltradas, 'DESC')
+            break
+        case 'MENOS-RECIENTES':
+            operacionesFiltradas = ordernarPorFecha(operacionesFiltradas, 'ASC')
+            break
+        case 'MAYOR-MONTO':
+            operacionesFiltradas = ordernarPorMonto(operacionesFiltradas, 'DESC')
+            break
+        case 'MENOR-MONTO':
+            operacionesFiltradas = ordernarPorMonto(operacionesFiltradas, 'ASC')
+            break
+        case 'A/Z':
+            operacionesFiltradas = ordernarPorDescripcion(operacionesFiltradas, 'ASC')
+            break
+        case 'Z/A':
+            operacionesFiltradas = ordernarPorDescripcion(operacionesFiltradas, 'DESC')
+            break
+        default:
+    }
+
     completarOperaciones(operacionesFiltradas);
 }
 
