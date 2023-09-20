@@ -193,6 +193,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     subirDatos ({ operaciones });
     completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
+    actualizarBalance(traerOperaciones());
     // Reestablecer los campos de entrada
     $('#descripcion-operacion').value = '';
     $('#monto-input').value = 0;
@@ -285,6 +286,7 @@ const editarOperacion = (id) => {
     operaciones = operacionesActualizadas;
     completarOperaciones(operacionesActualizadas);
     subirDatos({ operaciones: operacionesActualizadas });
+    actualizarBalance(traerOperaciones());
 };
 
 // PASA LOS VALORES DE LA OPERACIÓN A LOS CAMPOS DE LA SECCIÓN EDITAR OPERACIÓN
@@ -313,6 +315,7 @@ const eliminarOperacion = (idOperacion) => {
     operaciones = operacionesActualizadas;
     subirDatos({ operaciones: operacionesActualizadas });
     completarOperaciones(operacionesActualizadas);
+    actualizarBalance(traerOperaciones());
 }
 
 // SECCION DE FILTROS ---------------------------
@@ -341,6 +344,40 @@ const aplicarFiltros = () => {
     // Suponiendo que tenemos una funcion que pinte todas las operaciones
     // De este forma solo pinta las operaciones que pasaron los filtros
     mostrarOperaciones(operacionesFiltradas);
+}
+
+// SECCIÓN BALANCE ------------------------------
+
+// CALCULA EL TOTAL DE LAS GANANCIAS, LOS GASTOS Y EL BALANCE
+const obtenerBalance = (operaciones) => {
+    const balanceInicial = { ganancias: 0, gastos: 0, balance: 0, };
+    const resultado = operaciones.reduce((balance, operacion) => {
+        if (operacion.tipo === 'GANANCIA') {
+            balance.ganancias += Number(operacion.monto);
+        } else if (operacion.tipo === 'GASTO') {
+            balance.gastos += Number(operacion.monto);
+        }
+        balance.balance = balance.ganancias - balance.gastos;
+        return balance;
+    }, balanceInicial);
+    return resultado;
+}
+
+// ACTUALIZA LOS VALORES DE LA SECCIÓN BALANCE 
+const actualizarBalance = (operaciones) => {
+    const { ganancias, gastos, balance } = obtenerBalance(operaciones);
+    $('#ganancias').textContent = `+$${Math.abs(ganancias)}`;
+    $('#gastos').textContent = `-$${Math.abs(gastos)}`;
+    $('#balance').classList.remove('has-text-danger', 'has-text-success');
+    let operador = '';
+    if (balance > 0) {
+        $('#balance').classList.add('has-text-success');
+        operador = '+';
+    } else if (balance < 0) {
+        $('#balance').classList.add('has-text-danger');
+        operador = '-';
+    }
+    $('#balance').textContent = `${operador}$${Math.abs(balance)}`;
 }
 
 // ACTUALIZACIÓN DE FECHA
