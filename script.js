@@ -184,7 +184,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     let nuevaOperacion = {
         id: randomId(),
         descripcion: $('#descripcion-operacion').value,
-        monto: $('#monto-input').value,
+        monto: Number($('#monto-input').value),
         tipo: $('#tipo-operacion').value,
         categoria: $("#nueva-operacion-categorias-select").value,
         fecha: $('#fecha-input-operacion').value,
@@ -195,7 +195,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
     // Reestablecer los campos de entrada
     $('#descripcion-operacion').value = '';
-    $('#monto-input').value = '0';
+    $('#monto-input').value = 0;
     $('#tipo-operacion').selectedIndex = 0;
     $('#nueva-operacion-categorias-select').selectedIndex = 0;
     $('#fecha-input-operacion').valueAsDate = new Date();
@@ -205,7 +205,7 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
     $('#descripcion-operacion').value = '';
-    $('#monto-input').value = '0';
+    $('#monto-input').value = 0;
     $('#tipo-operacion').selectedIndex = 0;
     $('#nueva-operacion-categorias-select').selectedIndex = 0;
     $('#fecha-input-operacion').valueAsDate = new Date();
@@ -266,7 +266,7 @@ const editarOperacionElegida = (idOperacion, operacionNueva, operaciones) => {
 // BUSCA LOS NUEVOS VALORES DADOS AL EDITAR LA OPERACIÓN Y LOS ACTUALIZA
 const editarOperacion = (id) => {
     const descripcion = $('#editar-descripcion-operacion').value;
-    const monto = $('#editar-monto-input').value;
+    const monto = Number($('#editar-monto-input').value);
     const categoria = $('#editar-categorias-select').value;
     const tipo = $('#editar-tipo-operacion').value;
     const fecha = $('#editar-fecha-operacion').value;
