@@ -463,6 +463,7 @@ const inicializarPagina = () => {
     llenarSelect(categorias);
     listaCategorias(categorias);
     completarOperaciones(operaciones);
+    actualizarBalance(traerOperaciones());
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
