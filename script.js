@@ -218,7 +218,7 @@ const completarOperaciones = (operaciones) => {
     $('#operaciones').innerHTML = "";
     for (let operacion of operaciones) {
         const categoria = obtenerCategoria(operacion.categoria, traerCategorias()).nombre;
-        const fecha = new Date(operacion.fecha);
+        const fecha = new Date(operacion.fecha + 'T00:00:00-03:00');
         $('#operaciones').innerHTML += `
             <div class="column is-3-tablet is-6-mobile">
                 <h4 class="has-text-weight-semibold">${operacion.descripcion}</h4>
@@ -227,7 +227,7 @@ const completarOperaciones = (operaciones) => {
                 <span class="tag is-primary is-light">${categoria}</span>
             </div>
             <div class="column is-2-tablet is-hidden-mobile">
-                <h4 class="is-6 has-text-grey has-text-right-tablet">${fecha.getDate() + 1}/${fecha.getMonth() + 1}/${fecha.getFullYear()}</h4>
+                <h4 class="is-6 has-text-grey has-text-right-tablet">${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}</h4>
             </div>
             <div class="column is-2-tablet is-6-mobile is-size-4-mobile">
                 <h4 class="has-text-weight-bold has-text-right-tablet ${operacion.tipo === 'GANANCIA' ? 'has-text-success' : 'has-text-danger'}" id="monto-operacion">${operacion.tipo === 'GANANCIA' ? '+' : '-'}$${operacion.monto}</h4>
