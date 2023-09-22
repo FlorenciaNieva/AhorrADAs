@@ -86,14 +86,12 @@ let categorias = traerCategorias() || [
 const llenarSelect = (categories) => {
     $$(".categorias-select").forEach((select) => {
         select.innerHTML = "";
-
-    if (select.classList.contains("todos-filtros")) {
-        select.innerHTML += `<option>Todas</option>`;
-    }
-
-    for (let { nombre, id } of categories) {
-        select.innerHTML += `<option value="${id}">${nombre}</option>`;
-    }
+        if (select.classList.contains("todos-filtros")) {
+            select.innerHTML += `<option>Todas</option>`;
+        }
+        for (let { nombre, id } of categories) {
+            select.innerHTML += `<option value="${id}">${nombre}</option>`;
+        }
     });
 };
 
@@ -136,9 +134,7 @@ const editCategory = (id) => {
         id: id,
         nombre: $("#editar-categoria-input").value,
     };
-    let categoriasActualizadas = traerCategorias().map((categoria) =>
-        categoria.id === id ? { ...nuevaCategoria } : categoria
-    );
+    let categoriasActualizadas = traerCategorias().map((categoria) => categoria.id === id ? { ...nuevaCategoria } : categoria);
     subirDatos({categorias: categoriasActualizadas})
     actualizarVistas(traerDatos());
     mostrarVista('seccion-categorias')
@@ -159,26 +155,26 @@ const actualizarVistas = (datos) => {
 // SE AGREGA LA NUEVA CATEGORIA
 $("#agregar-categoria-boton").addEventListener("click", () => {
     let nuevaCategoria = {
-                id: randomId(),
-                nombre: $("#categoria-input").value,
-            };
-            let categoriasActualizadas = [...categorias, nuevaCategoria];
-            subirDatos({categorias: categoriasActualizadas})
-            actualizarVistas(traerDatos());
-            $("#categoria-input").value = "";
+        id: randomId(),
+        nombre: $("#categoria-input").value,
+    };
+    let categoriasActualizadas = [...categorias, nuevaCategoria];
+    subirDatos({categorias: categoriasActualizadas})
+    actualizarVistas(traerDatos());
+    $("#categoria-input").value = "";
 });
 
 // SE ELIMINA LA CATEGORIA
-    const removeCategory = (id) => {
-        let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
-        subirDatos({categorias: categoriasActualizadas})
-        actualizarVistas(traerDatos());
-        // eliminar todas las operaciones relacionadas con la categoria eliminada
-        let operacionesActualizadas = operaciones.filter((operacion) => operacion.categoria != id);
-        operaciones = operacionesActualizadas;
-        subirDatos({ operaciones: operacionesActualizadas });
-        completarOperaciones(operacionesActualizadas);
-    }
+const removeCategory = (id) => {
+    let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
+    subirDatos({categorias: categoriasActualizadas})
+    actualizarVistas(traerDatos());
+    // eliminar todas las operaciones relacionadas con la categoria eliminada
+    let operacionesActualizadas = operaciones.filter((operacion) => operacion.categoria != id);
+    operaciones = operacionesActualizadas;
+    subirDatos({ operaciones: operacionesActualizadas });
+    completarOperaciones(operacionesActualizadas);
+}
 
 //SECCIÓN OPERACIONES --------------------------
 
