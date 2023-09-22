@@ -37,20 +37,21 @@ window.addEventListener('resize', () => {
     }
 });
 
-// boton para ocultar o mostrar los filtros
-
-$('#toggle-filtros').addEventListener('click', () => {
+// OCULTAR O MOSTRAR FILTROS
+const toggleFiltros = () => {
     const toggle = $('#toggle-filtros')
     const filtros = $('#container-filtros')
 
     if (toggle.innerText === 'Ocultar filtros') {
         toggle.innerText = 'Mostrar filtros'
         filtros.classList.add('is-hidden')
-        } else {
+    } else {
         toggle.innerText = 'Ocultar filtros'
         filtros.classList.remove('is-hidden')
-        }
-});
+    }
+}
+
+$('#toggle-filtros').addEventListener('click', () => toggleFiltros());
 
 // INPUT SELECT
 
