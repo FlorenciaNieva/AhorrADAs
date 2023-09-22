@@ -1,20 +1,11 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-//INTERCAMBIO DE PANELES
-
+//INTERCAMBIO DE VISTAS
 const mostrarVista = (vistaAMostrar) => {
     $$('.vista').forEach((vista) => vista.classList.add('is-hidden'));
     $(`#${vistaAMostrar}`).classList.remove('is-hidden');
 };
-
-$('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
-
-$('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
-
-$('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
-
-$('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
 
 // MENU HAMBURGUESA DEL NAVBAR
 
@@ -458,7 +449,15 @@ const fechaActualizada = () => {
 }
 
 // INICIALIZACIÓN
+const inicializarVistas = () => {
+    $('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
+    $('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
+    $('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
+    $('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
+}
+
 const inicializarPagina = () => {
+    inicializarVistas();
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
