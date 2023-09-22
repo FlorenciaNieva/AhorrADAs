@@ -153,7 +153,7 @@ const actualizarVistas = (datos) => {
 }
 
 // SE AGREGA LA NUEVA CATEGORIA
-$("#agregar-categoria-boton").addEventListener("click", () => {
+const agregarCategoria = () => {
     let nuevaCategoria = {
         id: randomId(),
         nombre: $("#categoria-input").value,
@@ -162,7 +162,9 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
     subirDatos({categorias: categoriasActualizadas})
     actualizarVistas(traerDatos());
     $("#categoria-input").value = "";
-});
+}
+
+$("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
 
 // SE ELIMINA LA CATEGORIA
 const removeCategory = (id) => {
