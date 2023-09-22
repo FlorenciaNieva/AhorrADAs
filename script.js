@@ -17,14 +17,15 @@ $('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-repor
 $('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
 
 // MENU HAMBURGUESA DEL NAVBAR
-
-$('.navbar-burger').addEventListener('click', () => {
+const toggleMenuHamburguesa = () => {
     $('.navbar-burger').classList.toggle('is-active');
     $('.navbar-menu').classList.toggle('is-active');
     $('.navbar-menu').classList.toggle('has-background-primary');
     $('#botones-nav').classList.toggle('is-flex-direction-column');
     $('#botones-nav').classList.toggle('is-align-content-flex-start');
-});
+}
+
+$('.navbar-burger').addEventListener('click', () => toggleMenuHamburguesa());
 
 window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
