@@ -178,6 +178,15 @@ const removeCategory = (id) => {
 
 //SECCIÓN OPERACIONES --------------------------
 
+// REESTABLECER LOS INPUTS DE OPERACIÓN
+const reestablecerOperacion = () => {
+    $('#descripcion-operacion').value = '';
+    $('#monto-input').value = 0;
+    $('#tipo-operacion').selectedIndex = 0;
+    $('#nueva-operacion-categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').valueAsDate = new Date();
+}
+
 // AGREGAR NUEVA OPERACIÓN
 $('#agregar-operacion-boton').addEventListener('click', () => {
     let nuevaOperacion = {
@@ -193,22 +202,13 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
-    // Reestablecer los campos de entrada
-    $('#descripcion-operacion').value = '';
-    $('#monto-input').value = 0;
-    $('#tipo-operacion').selectedIndex = 0;
-    $('#nueva-operacion-categorias-select').selectedIndex = 0;
-    $('#fecha-input-operacion').valueAsDate = new Date();
+    reestablecerOperacion();
 });
 
 // BOTÓN DE CANCELAR NUEVA OPERACIÓN
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
-    $('#descripcion-operacion').value = '';
-    $('#monto-input').value = 0;
-    $('#tipo-operacion').selectedIndex = 0;
-    $('#nueva-operacion-categorias-select').selectedIndex = 0;
-    $('#fecha-input-operacion').valueAsDate = new Date();
+    reestablecerOperacion();
 })
 
 // COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
