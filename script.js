@@ -1,8 +1,9 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-//INTERCAMBIO DE PANELES
+const randomId = () => self.crypto.randomUUID();
 
+// INTERCAMBIO DE VISTA
 const mostrarVista = (vistaAMostrar) => {
     $$('.vista').forEach((vista) => vista.classList.add('is-hidden'));
     $(`#${vistaAMostrar}`).classList.remove('is-hidden');
@@ -53,7 +54,7 @@ const toggleFiltros = () => {
 
 $('#toggle-filtros').addEventListener('click', () => toggleFiltros());
 
-// INPUT SELECT
+// LOCAL STORAGE -------------------------------
 
 const traerDatos = () => {
     return JSON.parse(localStorage.getItem("datos")); //retorna lo que encuentre bajo esa key y lo convierte en objeto
@@ -63,11 +64,15 @@ const subirDatos = (datos) => {
     localStorage.setItem("datos", JSON.stringify({ ...traerDatos(), ...datos }));
 };
 
+const traerOperaciones = () => {
+    return traerDatos()?.operaciones;
+}
+
+let operaciones = traerOperaciones() || [];
+
 const traerCategorias = () => {
     return traerDatos()?.categorias; // trae lo que encuentre en el localStorage
 };
-
-const randomId = () => self.crypto.randomUUID();
 
 let categorias = traerCategorias() || [
     { id: randomId(), nombre: "comida", },
@@ -176,11 +181,6 @@ $("#agregar-categoria-boton").addEventListener("click", () => {
     }
 
 //SECCIÓN OPERACIONES --------------------------
-const traerOperaciones = () => {
-    return traerDatos()?.operaciones;
-}
-
-let operaciones = traerOperaciones() || [];
 
 // AGREGAR NUEVA OPERACIÓN
 $('#agregar-operacion-boton').addEventListener('click', () => {
