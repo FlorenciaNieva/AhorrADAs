@@ -188,7 +188,7 @@ const reestablecerOperacion = () => {
 }
 
 // AGREGAR NUEVA OPERACIÓN
-$('#agregar-operacion-boton').addEventListener('click', () => {
+const agregraOperacion = () => {
     let nuevaOperacion = {
         id: randomId(),
         descripcion: $('#descripcion-operacion').value,
@@ -203,7 +203,9 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
     reestablecerOperacion();
-});
+}
+
+$('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
 
 // BOTÓN DE CANCELAR NUEVA OPERACIÓN
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
