@@ -464,7 +464,26 @@ const vistaReporte = () => {
     $('#sin-reportes').classList.add('is-hidden')
 }
 
-vistaReporte();
+// OBTIENE EL RESUMEN DE LAS CATEGORIAS
+const obtenerResumenCategorias = (operaciones, categorias) => {
+    let mayorGanancia = { categoria: '', monto: 0 };
+    let mayorGasto = { categoria: '', monto: 0 };
+    let mayorBalance = { categoria: '', monto: null };
+    categorias.forEach((categoria) => {
+        const operacionesDeCategoria = filtrarPorCategoria(categoria.id, operaciones);
+        const { ganancias, gastos, balance } = obtenerBalance(operacionesDeCategoria);
+        if (ganancias > mayorGanancia.monto) {
+            mayorGanancia = { categoria: categoria.id, monto: ganancias };
+        }
+        if (gastos > mayorGasto.monto) {
+            mayorGasto = { categoria: categoria.id, monto: gastos };
+        }
+        if (balance > mayorBalance.monto) {
+            mayorBalance = { categoria: categoria.id, monto: balance };
+        }
+    });
+    return { mayorGanancia, mayorGasto, mayorBalance };
+}
 
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
