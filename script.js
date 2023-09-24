@@ -42,6 +42,14 @@ const toggleFiltros = () => {
     }
 }
 
+// ACTUALIZACIÓN DE FECHA
+const fechaActualizada = () => {
+    const inputsFecha = $$('input[type="date"]');
+    inputsFecha.forEach((input) => {
+        input.valueAsDate = new Date();
+    });
+}
+
 // LOCAL STORAGE -------------------------------
 
 const traerDatos = () => {
@@ -621,14 +629,6 @@ const actualizarReportes = () => {
     completarTotalesPorMes();
     completarTotalesPorCategoria();
 }  
-
-// ACTUALIZACIÓN DE FECHA
-const fechaActualizada = () => {
-    const inputsFecha = $$('input[type="date"]');
-    inputsFecha.forEach((input) => {
-        input.valueAsDate = new Date();
-    });
-}
 
 // INICIALIZACIÓN -------------------------------
 
