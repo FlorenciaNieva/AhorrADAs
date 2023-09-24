@@ -197,14 +197,6 @@ const agregraOperacion = () => {
     actualizarReportes();
 }
 
-$('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
-
-// BOTÓN DE CANCELAR NUEVA OPERACIÓN
-$('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
-    mostrarVista('seccion-balance');
-    reestablecerOperacion();
-})
-
 // COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
 const completarOperaciones = (operaciones) => {
     $('#operaciones').innerHTML = "";
@@ -296,11 +288,6 @@ const cargarDatosOperacion = (id) => {
         mostrarVista('seccion-balance');
     };
 };
-
-// BOTÓN DE CANCELAR EDITAR OPERACIÓN
-$('#boton-cancelar-editar-operacion').addEventListener('click', () => {
-    mostrarVista('seccion-balance');
-});  
 
 //ELIMINAR OPERACIONES
 const eliminarOperacion = (idOperacion) => {
@@ -568,7 +555,6 @@ const completarResumen = () => {
     vistaReporte();
 }
 
-
 // COMPLETA TOTALES POR CATEGORIAS DE LA SECCIÓN REPORTE
 const completarTotalesPorCategoria = () => {
     const reporte = obtenerTotalesPorCategoria(traerOperaciones());
@@ -639,15 +625,25 @@ const inicializarCategorias = () => {
     $("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
 }
 
+const inicializarOperaciones = () => {
+    $('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
+    $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
+        mostrarVista('seccion-balance');
+        reestablecerOperacion();
+    });
+    $('#boton-cancelar-editar-operacion').addEventListener('click', () => mostrarVista('seccion-balance'));  
+}
+
 const inicializarPagina = () => {
     inicializarVistas();
+    inicializarCategorias();
+    inicializarOperaciones();
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
     completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
     actualizarReportes();
-    inicializarCategorias()
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
