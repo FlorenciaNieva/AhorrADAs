@@ -158,7 +158,7 @@ const agregarCategoria = () => {
         id: randomId(),
         nombre: $("#categoria-input").value,
     };
-    let categoriasActualizadas = [...categorias, nuevaCategoria];
+    let categoriasActualizadas = [...traerCategorias(), nuevaCategoria];
     subirDatos({categorias: categoriasActualizadas})
     actualizarVistas(traerDatos());
     $("#categoria-input").value = "";
