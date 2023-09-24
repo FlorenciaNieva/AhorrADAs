@@ -197,6 +197,7 @@ const agregraOperacion = () => {
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
     reestablecerOperacion();
+    actualizarReportes();
 }
 
 $('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
@@ -443,6 +444,188 @@ const actualizarBalance = (operaciones) => {
     $('#balance').textContent = `${operador}$${Math.abs(balance)}`;
 }
 
+// SECCIÓN REPORTES -----------------------------
+
+// INTERCAMBIA LA VISTA DE REPORTES DEPENDIENDO SI HAY O NO OPERACIONES
+const vistaReporte = () => {
+    if (operaciones.length <= 0) {
+        $('#sin-reportes').classList.remove('is-hidden')
+        $('#con-reportes').classList.add('is-hidden')
+        return
+    }
+    $('#con-reportes').classList.remove('is-hidden')
+    $('#sin-reportes').classList.add('is-hidden')
+}
+
+// OBTIENE EL RESUMEN DE LAS CATEGORIAS
+const obtenerResumenCategorias = (operaciones, categorias) => {
+    let mayorGanancia = { categoria: '', monto: 0 };
+    let mayorGasto = { categoria: '', monto: 0 };
+    let mayorBalance = { categoria: '', monto: null };
+    categorias.forEach((categoria) => {
+        const operacionesDeCategoria = filtrarPorCategoria(categoria.id, operaciones);
+        const { ganancias, gastos, balance } = obtenerBalance(operacionesDeCategoria);
+        if (ganancias > mayorGanancia.monto) {
+            mayorGanancia = { categoria: categoria.id, monto: ganancias };
+        }
+        if (gastos > mayorGasto.monto) {
+            mayorGasto = { categoria: categoria.id, monto: gastos };
+        }
+        if (balance > mayorBalance.monto) {
+            mayorBalance = { categoria: categoria.id, monto: balance };
+        }
+    });
+    return { mayorGanancia, mayorGasto, mayorBalance };
+}
+
+// OBTIENE EL RESUMEN DE LOS MESES
+const obtenerResumenMeses = (operaciones) => {
+    let mayorGanancia = { fecha: '', monto: 0 };
+    let mayorGasto = { fecha: '', monto: 0 };
+    operaciones.forEach((operacion) => {
+        const { tipo, fecha, monto } = operacion;
+        if (tipo === 'GANANCIA' && monto > mayorGanancia.monto) {
+            mayorGanancia = { fecha, monto };
+        }
+        if (tipo === 'GASTO' && monto > mayorGasto.monto) {
+            mayorGasto = { fecha, monto };
+        }
+    });
+    return { mayorGanancia, mayorGasto };
+}
+
+// OBTIENE TODOS LOS RESUMENES
+const obtenerResumenes = (operaciones, categorias) => {
+    const resumenCategorias = obtenerResumenCategorias(operaciones, categorias)
+    const porMeses = obtenerResumenMeses(operaciones)
+    return { categorias: resumenCategorias, meses: { ...porMeses } }
+}
+
+// GUARDA EL TOTAL POR CADA CATEGORIA EN UN ARRAY
+const obtenerTotalesPorCategoria = (operaciones) => {
+    const totalesPorCategoria = {};
+    operaciones.forEach((operacion) => {
+        const categoria = obtenerCategoria(operacion.categoria, traerCategorias()).nombre;
+        const tipo = operacion.tipo.toLowerCase();
+        const monto = operacion.monto;
+        if (!totalesPorCategoria[categoria]) {
+            totalesPorCategoria[categoria] = {
+                ganancia: 0,
+                gasto: 0,
+                balance: 0,
+            };
+        }
+        totalesPorCategoria[categoria][tipo] += monto;
+        if (tipo === 'ganancia') {
+            totalesPorCategoria[categoria].balance += monto;
+        } else {
+            totalesPorCategoria[categoria].balance -= monto;
+        }
+    });
+    return totalesPorCategoria;
+}
+
+// GUARDA EL TOTAL POR MES EN UN ARRAY
+const obtenerTotalesPorMes = (operaciones) => {
+    const totalesPorMes = {};
+    operaciones.forEach((operacion) => {
+        const fechaCompleta = new Date(operacion.fecha);
+        const mes = `${fechaCompleta.getMonth() + 1}/${fechaCompleta.getFullYear()}`;
+        const tipo = operacion.tipo.toLowerCase();
+        const monto = operacion.monto;
+        if (!totalesPorMes[mes]) {
+            totalesPorMes[mes] = {
+                ganancia: 0,
+                gasto: 0,
+                balance: 0,
+            };
+        }
+        totalesPorMes[mes][tipo] += monto;
+        if (tipo === 'ganancia') {
+            totalesPorMes[mes].balance += monto;
+        } else {
+            totalesPorMes[mes].balance -= monto;
+        }
+    });
+    return totalesPorMes;
+}
+
+// COMPLETA EL RESUMEN DE LA SECCIÓN REPORTE
+const completarResumen = () => {
+    const reporte = obtenerResumenes(traerOperaciones(), traerCategorias());
+    // Categoría mayor ganancia
+    $('#categoria-mayor-ganancia').innerText = obtenerCategoria( reporte.categorias.mayorGanancia.categoria, traerCategorias() ).nombre;
+    $('#categoria-mayor-ganancia-monto').innerText = `+$${reporte.categorias.mayorGanancia.monto}`
+    // Categoría mayor gasto
+    $('#categoria-mayor-gasto').innerText = obtenerCategoria( reporte.categorias.mayorGasto.categoria, traerCategorias() ).nombre
+    $('#categoria-mayor-gasto-monto').innerText = `-$${reporte.categorias.mayorGasto.monto}`
+    // Categoría mayor balance
+    $('#categoria-mayor-balance').innerText = obtenerCategoria( reporte.categorias.mayorBalance.categoria, traerCategorias() ).nombre
+    $('#categoria-mayor-balance-monto').innerText = `$${reporte.categorias.mayorBalance.monto}`
+    // Mes mayor ganancia
+    $('#mes-mayor-ganancia').innerText = reporte.meses.mayorGanancia.fecha
+    $('#mes-mayor-ganancia-monto').innerText = `+$${reporte.categorias.mayorGanancia.monto}`
+    // Mes mayor gasto
+    $('#mes-mayor-gasto').innerText = reporte.meses.mayorGasto.fecha
+    $('#mes-mayor-gasto-monto').innerText = `-$${reporte.categorias.mayorGasto.monto}`
+    vistaReporte();
+}
+
+
+// COMPLETA TOTALES POR CATEGORIAS DE LA SECCIÓN REPORTE
+const completarTotalesPorCategoria = () => {
+    const reporte = obtenerTotalesPorCategoria(traerOperaciones());
+    for (let item in reporte) {
+        const itemReporte = document.createElement('div');
+        itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
+        itemReporte.innerHTML = `
+            <div class="column">
+                <h3 class="has-text-weight-semibold">${item}</h3>
+            </div>
+            <div class="column has-text-success has-text-right">
+                +$${reporte[item].ganancia}
+            </div>
+            <div class="column has-text-danger has-text-right">
+                -$${reporte[item].gasto}
+            </div>
+            <div class="column has-text-right">
+                $${reporte[item].balance}
+            </div>
+        `;
+        $('#reporte-categorias').append(itemReporte);
+    }
+};
+
+// COMPLETA TOTALES POR MES DE LA SECCIÓN REPORTE
+const completarTotalesPorMes = () => {
+    const reporte = obtenerTotalesPorMes(traerOperaciones());
+    for (let item in reporte) {
+        const itemReporte = document.createElement('div');
+        itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
+        itemReporte.innerHTML = `
+            <div class="column">
+                <h3 class="has-text-weight-semibold">${item}</h3>
+            </div>
+            <div class="column has-text-success has-text-right">
+                +$${reporte[item].ganancia}
+            </div>
+            <div class="column has-text-danger has-text-right">
+                -$${reporte[item].gasto}
+            </div>
+            <div class="column has-text-right">
+                $${reporte[item].balance}
+            </div>
+        `;
+        $('#reporte-mes').append(itemReporte);
+    }
+};
+
+const actualizarReportes = () => {
+    completarResumen();
+    completarTotalesPorMes();
+    completarTotalesPorCategoria();
+}  
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
@@ -466,6 +649,7 @@ const inicializarPagina = () => {
     listaCategorias(categorias);
     completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
+    actualizarReportes();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
