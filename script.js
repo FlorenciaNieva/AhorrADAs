@@ -205,6 +205,7 @@ const agregraOperacion = () => {
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
     reestablecerOperacion();
+    actualizarReportes();
 }
 
 $('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
