@@ -485,6 +485,22 @@ const obtenerResumenCategorias = (operaciones, categorias) => {
     return { mayorGanancia, mayorGasto, mayorBalance };
 }
 
+// OBTIENE EL RESUMEN DE LOS MESES
+const obtenerResumenMeses = (operaciones) => {
+    let mayorGanancia = { fecha: '', monto: 0 };
+    let mayorGasto = { fecha: '', monto: 0 };
+    operaciones.forEach((operacion) => {
+        const { tipo, fecha, monto } = operacion;
+        if (tipo === 'GANANCIA' && monto > mayorGanancia.monto) {
+            mayorGanancia = { fecha, monto };
+        }
+        if (tipo === 'GASTO' && monto > mayorGasto.monto) {
+            mayorGasto = { fecha, monto };
+        }
+    });
+    return { mayorGanancia, mayorGasto };
+}
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
