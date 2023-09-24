@@ -532,7 +532,7 @@ const obtenerTotalesPorCategoria = (operaciones) => {
     return totalesPorCategoria;
 }
 
-// OBTIENE EL TOTAL POR MES EN UN ARRAY
+// GUARDA EL TOTAL POR MES EN UN ARRAY
 const obtenerTotalesPorMes = (operaciones) => {
     const totalesPorMes = {};
     operaciones.forEach((operacion) => {
@@ -555,6 +555,27 @@ const obtenerTotalesPorMes = (operaciones) => {
         }
     });
     return totalesPorMes;
+}
+
+// COMPLETA EL RESUMEN DE LA SECCIÓN REPORTE
+const completarResumen = () => {
+    const reporte = obtenerResumenes(traerOperaciones(), traerCategorias());
+    // Categoría mayor ganancia
+    $('#categoria-mayor-ganancia').innerText = obtenerCategoria( reporte.categorias.mayorGanancia.categoria, traerCategorias() ).nombre;
+    $('#categoria-mayor-ganancia-monto').innerText = `+$${reporte.categorias.mayorGanancia.monto}`
+    // Categoría mayor gasto
+    $('#categoria-mayor-gasto').innerText = obtenerCategoria( reporte.categorias.mayorGasto.categoria, traerCategorias() ).nombre
+    $('#categoria-mayor-gasto-monto').innerText = `-$${reporte.categorias.mayorGasto.monto}`
+    // Categoría mayor balance
+    $('#categoria-mayor-balance').innerText = obtenerCategoria( reporte.categorias.mayorBalance.categoria, traerCategorias() ).nombre
+    $('#categoria-mayor-balance-monto').innerText = `$${reporte.categorias.mayorBalance.monto}`
+    // Mes mayor ganancia
+    $('#mes-mayor-ganancia').innerText = reporte.meses.mayorGanancia.fecha
+    $('#mes-mayor-ganancia-monto').innerText = `+$${reporte.categorias.mayorGanancia.monto}`
+    // Mes mayor gasto
+    $('#mes-mayor-gasto').innerText = reporte.meses.mayorGasto.fecha
+    $('#mes-mayor-gasto-monto').innerText = `-$${reporte.categorias.mayorGasto.monto}`
+    vistaReporte();
 }
 
 // ACTUALIZACIÓN DE FECHA
