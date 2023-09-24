@@ -578,6 +578,31 @@ const completarResumen = () => {
     vistaReporte();
 }
 
+
+// COMPLETA TOTALES POR CATEGORIAS DE LA SECCIÓN REPORTE
+const completarTotalesPorCategoria = () => {
+    const reporte = obtenerTotalesPorCategoria(traerOperaciones());
+    for (let item in reporte) {
+        const itemReporte = document.createElement('div');
+        itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
+        itemReporte.innerHTML = `
+            <div class="column">
+                <h3 class="has-text-weight-semibold">${item}</h3>
+            </div>
+            <div class="column has-text-success has-text-right">
+                +$${reporte[item].ganancia}
+            </div>
+            <div class="column has-text-danger has-text-right">
+                -$${reporte[item].gasto}
+            </div>
+            <div class="column has-text-right">
+                $${reporte[item].balance}
+            </div>
+        `;
+        $('#reporte-categorias').append(itemReporte);
+    }
+};
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
