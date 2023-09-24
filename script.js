@@ -449,6 +449,21 @@ const actualizarBalance = (operaciones) => {
     $('#balance').textContent = `${operador}$${Math.abs(balance)}`;
 }
 
+// SECCIÓN REPORTES -----------------------------
+
+// INTERCAMBIA LA VISTA DE REPORTES DEPENDIENDO SI HAY O NO OPERACIONES
+const vistaReporte = () => {
+    if (operaciones.length <= 0) {
+        $('#sin-reportes').classList.remove('is-hidden')
+        $('#con-reportes').classList.add('is-hidden')
+        return
+    }
+    $('#con-reportes').classList.remove('is-hidden')
+    $('#sin-reportes').classList.add('is-hidden')
+}
+
+vistaReporte();
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
