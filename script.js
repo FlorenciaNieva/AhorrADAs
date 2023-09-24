@@ -18,8 +18,6 @@ const toggleMenuHamburguesa = () => {
     $('#botones-nav').classList.toggle('is-align-content-flex-start');
 }
 
-$('.navbar-burger').addEventListener('click', () => toggleMenuHamburguesa());
-
 window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
         $('.navbar-burger').classList.remove('is-active');
@@ -43,8 +41,6 @@ const toggleFiltros = () => {
         filtros.classList.remove('is-hidden')
     }
 }
-
-$('#toggle-filtros').addEventListener('click', () => toggleFiltros());
 
 // LOCAL STORAGE -------------------------------
 
@@ -634,12 +630,15 @@ const fechaActualizada = () => {
     });
 }
 
-// INICIALIZACIÓN
+// INICIALIZACIÓN -------------------------------
+
 const inicializarVistas = () => {
     $('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
     $('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
     $('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
     $('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
+    $('.navbar-burger').addEventListener('click', () => toggleMenuHamburguesa());
+    $('#toggle-filtros').addEventListener('click', () => toggleFiltros());
 }
 
 const inicializarPagina = () => {
