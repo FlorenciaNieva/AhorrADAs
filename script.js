@@ -508,6 +508,30 @@ const obtenerResumenes = (operaciones, categorias) => {
     return { categorias: resumenCategorias, meses: { ...porMeses } }
 }
 
+// GUARDA EL TOTAL POR CADA CATEGORIA EN UN ARRAY
+const obtenerTotalesPorCategoria = (operaciones) => {
+    const totalesPorCategoria = {};
+    operaciones.forEach((operacion) => {
+        const categoria = obtenerCategoria(operacion.categoria, traerCategorias()).nombre;
+        const tipo = operacion.tipo.toLowerCase();
+        const monto = operacion.monto;
+        if (!totalesPorCategoria[categoria]) {
+            totalesPorCategoria[categoria] = {
+                ganancia: 0,
+                gasto: 0,
+                balance: 0,
+            };
+        }
+        totalesPorCategoria[categoria][tipo] += monto;
+        if (tipo === 'ganancia') {
+            totalesPorCategoria[categoria].balance += monto;
+        } else {
+            totalesPorCategoria[categoria].balance -= monto;
+        }
+    });
+    return totalesPorCategoria;
+}
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
