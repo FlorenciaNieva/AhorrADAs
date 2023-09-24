@@ -532,6 +532,31 @@ const obtenerTotalesPorCategoria = (operaciones) => {
     return totalesPorCategoria;
 }
 
+// OBTIENE EL TOTAL POR MES EN UN ARRAY
+const obtenerTotalesPorMes = (operaciones) => {
+    const totalesPorMes = {};
+    operaciones.forEach((operacion) => {
+        const fechaCompleta = new Date(operacion.fecha);
+        const mes = `${fechaCompleta.getMonth() + 1}/${fechaCompleta.getFullYear()}`;
+        const tipo = operacion.tipo.toLowerCase();
+        const monto = operacion.monto;
+        if (!totalesPorMes[mes]) {
+            totalesPorMes[mes] = {
+                ganancia: 0,
+                gasto: 0,
+                balance: 0,
+            };
+        }
+        totalesPorMes[mes][tipo] += monto;
+        if (tipo === 'ganancia') {
+            totalesPorMes[mes].balance += monto;
+        } else {
+            totalesPorMes[mes].balance -= monto;
+        }
+    });
+    return totalesPorMes;
+}
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
