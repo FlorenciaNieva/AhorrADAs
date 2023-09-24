@@ -627,6 +627,12 @@ const completarTotalesPorMes = () => {
     }
 };
 
+const actualizarReportes = () => {
+    completarResumen();
+    completarTotalesPorMes();
+    completarTotalesPorCategoria();
+}  
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
@@ -642,6 +648,7 @@ const inicializarPagina = () => {
     listaCategorias(categorias);
     completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
+    actualizarReportes();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
