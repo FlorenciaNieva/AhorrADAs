@@ -136,11 +136,6 @@ const editCategory = (id) => {
     mostrarVista('seccion-categorias')
 };
 
-//BOTON PARA CANCELAR EDITAR CATEGORIAS
-$("#cancelar-categoria-boton").addEventListener(`click`, () => {
-    mostrarVista('seccion-categorias')
-})
-
 // ACTUALIZA LA LISTA CON LAS CATEGORIAS
 const actualizarVistas = (datos) => {
     listaCategorias(datos.categorias);
@@ -159,8 +154,6 @@ const agregarCategoria = () => {
     actualizarVistas(traerDatos());
     $("#categoria-input").value = "";
 }
-
-$("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
 
 // SE ELIMINA LA CATEGORIA
 const removeCategory = (id) => {
@@ -641,6 +634,11 @@ const inicializarVistas = () => {
     $('#toggle-filtros').addEventListener('click', () => toggleFiltros());
 }
 
+const inicializarCategorias = () => {
+    $("#cancelar-categoria-boton").addEventListener(`click`, () => mostrarVista('seccion-categorias'));
+    $("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
+}
+
 const inicializarPagina = () => {
     inicializarVistas();
     fechaActualizada();
@@ -649,6 +647,7 @@ const inicializarPagina = () => {
     completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
     actualizarReportes();
+    inicializarCategorias()
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
