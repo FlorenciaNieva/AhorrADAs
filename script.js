@@ -1,8 +1,9 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-//INTERCAMBIO DE PANELES
+const randomId = () => self.crypto.randomUUID();
 
+// INTERCAMBIO DE VISTA
 const mostrarVista = (vistaAMostrar) => {
     $$('.vista').forEach((vista) => vista.classList.add('is-hidden'));
     $(`#${vistaAMostrar}`).classList.remove('is-hidden');
@@ -17,14 +18,15 @@ $('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-repor
 $('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
 
 // MENU HAMBURGUESA DEL NAVBAR
-
-$('.navbar-burger').addEventListener('click', () => {
+const toggleMenuHamburguesa = () => {
     $('.navbar-burger').classList.toggle('is-active');
     $('.navbar-menu').classList.toggle('is-active');
     $('.navbar-menu').classList.toggle('has-background-primary');
     $('#botones-nav').classList.toggle('is-flex-direction-column');
     $('#botones-nav').classList.toggle('is-align-content-flex-start');
-});
+}
+
+$('.navbar-burger').addEventListener('click', () => toggleMenuHamburguesa());
 
 window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
@@ -36,22 +38,23 @@ window.addEventListener('resize', () => {
     }
 });
 
-// boton para ocultar o mostrar los filtros
-
-$('#toggle-filtros').addEventListener('click', () => {
+// OCULTAR O MOSTRAR FILTROS
+const toggleFiltros = () => {
     const toggle = $('#toggle-filtros')
     const filtros = $('#container-filtros')
 
     if (toggle.innerText === 'Ocultar filtros') {
         toggle.innerText = 'Mostrar filtros'
         filtros.classList.add('is-hidden')
-        } else {
+    } else {
         toggle.innerText = 'Ocultar filtros'
         filtros.classList.remove('is-hidden')
-        }
-});
+    }
+}
 
-// INPUT SELECT
+$('#toggle-filtros').addEventListener('click', () => toggleFiltros());
+
+// LOCAL STORAGE -------------------------------
 
 const traerDatos = () => {
     return JSON.parse(localStorage.getItem("datos")); //retorna lo que encuentre bajo esa key y lo convierte en objeto
@@ -61,11 +64,15 @@ const subirDatos = (datos) => {
     localStorage.setItem("datos", JSON.stringify({ ...traerDatos(), ...datos }));
 };
 
+const traerOperaciones = () => {
+    return traerDatos()?.operaciones;
+}
+
+let operaciones = traerOperaciones() || [];
+
 const traerCategorias = () => {
     return traerDatos()?.categorias; // trae lo que encuentre en el localStorage
 };
-
-const randomId = () => self.crypto.randomUUID();
 
 let categorias = traerCategorias() || [
     { id: randomId(), nombre: "comida", },
@@ -79,14 +86,12 @@ let categorias = traerCategorias() || [
 const llenarSelect = (categories) => {
     $$(".categorias-select").forEach((select) => {
         select.innerHTML = "";
-
-    if (select.classList.contains("todos-filtros")) {
-        select.innerHTML += `<option>Todas</option>`;
-    }
-
-    for (let { nombre, id } of categories) {
-        select.innerHTML += `<option value="${id}">${nombre}</option>`;
-    }
+        if (select.classList.contains("todos-filtros")) {
+            select.innerHTML += `<option>Todas</option>`;
+        }
+        for (let { nombre, id } of categories) {
+            select.innerHTML += `<option value="${id}">${nombre}</option>`;
+        }
     });
 };
 
@@ -129,9 +134,7 @@ const editCategory = (id) => {
         id: id,
         nombre: $("#editar-categoria-input").value,
     };
-    let categoriasActualizadas = traerCategorias().map((categoria) =>
-        categoria.id === id ? { ...nuevaCategoria } : categoria
-    );
+    let categoriasActualizadas = traerCategorias().map((categoria) => categoria.id === id ? { ...nuevaCategoria } : categoria);
     subirDatos({categorias: categoriasActualizadas})
     actualizarVistas(traerDatos());
     mostrarVista('seccion-categorias')
@@ -150,38 +153,44 @@ const actualizarVistas = (datos) => {
 }
 
 // SE AGREGA LA NUEVA CATEGORIA
-$("#agregar-categoria-boton").addEventListener("click", () => {
+const agregarCategoria = () => {
     let nuevaCategoria = {
-                id: randomId(),
-                nombre: $("#categoria-input").value,
-            };
-            let categoriasActualizadas = [...categorias, nuevaCategoria];
-            subirDatos({categorias: categoriasActualizadas})
-            actualizarVistas(traerDatos());
-            $("#categoria-input").value = "";
-});
-
-// SE ELIMINA LA CATEGORIA
-    const removeCategory = (id) => {
-        let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
-        subirDatos({categorias: categoriasActualizadas})
-        actualizarVistas(traerDatos());
-        // eliminar todas las operaciones relacionadas con la categoria eliminada
-        let operacionesActualizadas = operaciones.filter((operacion) => operacion.categoria != id);
-        operaciones = operacionesActualizadas;
-        subirDatos({ operaciones: operacionesActualizadas });
-        completarOperaciones(operacionesActualizadas);
-    }
-
-//SECCIÓN OPERACIONES --------------------------
-const traerOperaciones = () => {
-    return traerDatos()?.operaciones;
+        id: randomId(),
+        nombre: $("#categoria-input").value,
+    };
+    let categoriasActualizadas = [...categorias, nuevaCategoria];
+    subirDatos({categorias: categoriasActualizadas})
+    actualizarVistas(traerDatos());
+    $("#categoria-input").value = "";
 }
 
-let operaciones = traerOperaciones() || [];
+$("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
+
+// SE ELIMINA LA CATEGORIA
+const removeCategory = (id) => {
+    let categoriasActualizadas = traerCategorias().filter((categoria) => categoria.id !== id);
+    subirDatos({categorias: categoriasActualizadas})
+    actualizarVistas(traerDatos());
+    // eliminar todas las operaciones relacionadas con la categoria eliminada
+    let operacionesActualizadas = operaciones.filter((operacion) => operacion.categoria != id);
+    operaciones = operacionesActualizadas;
+    subirDatos({ operaciones: operacionesActualizadas });
+    completarOperaciones(operacionesActualizadas);
+}
+
+//SECCIÓN OPERACIONES --------------------------
+
+// REESTABLECER LOS INPUTS DE OPERACIÓN
+const reestablecerOperacion = () => {
+    $('#descripcion-operacion').value = '';
+    $('#monto-input').value = 0;
+    $('#tipo-operacion').selectedIndex = 0;
+    $('#nueva-operacion-categorias-select').selectedIndex = 0;
+    $('#fecha-input-operacion').valueAsDate = new Date();
+}
 
 // AGREGAR NUEVA OPERACIÓN
-$('#agregar-operacion-boton').addEventListener('click', () => {
+const agregraOperacion = () => {
     let nuevaOperacion = {
         id: randomId(),
         descripcion: $('#descripcion-operacion').value,
@@ -195,22 +204,15 @@ $('#agregar-operacion-boton').addEventListener('click', () => {
     completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
-    // Reestablecer los campos de entrada
-    $('#descripcion-operacion').value = '';
-    $('#monto-input').value = 0;
-    $('#tipo-operacion').selectedIndex = 0;
-    $('#nueva-operacion-categorias-select').selectedIndex = 0;
-    $('#fecha-input-operacion').valueAsDate = new Date();
-});
+    reestablecerOperacion();
+}
+
+$('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
 
 // BOTÓN DE CANCELAR NUEVA OPERACIÓN
 $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
     mostrarVista('seccion-balance');
-    $('#descripcion-operacion').value = '';
-    $('#monto-input').value = 0;
-    $('#tipo-operacion').selectedIndex = 0;
-    $('#nueva-operacion-categorias-select').selectedIndex = 0;
-    $('#fecha-input-operacion').valueAsDate = new Date();
+    reestablecerOperacion();
 })
 
 // COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
