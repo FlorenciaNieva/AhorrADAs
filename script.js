@@ -501,6 +501,13 @@ const obtenerResumenMeses = (operaciones) => {
     return { mayorGanancia, mayorGasto };
 }
 
+// OBTIENE TODOS LOS RESUMENES
+const obtenerResumenes = (operaciones, categorias) => {
+    const resumenCategorias = obtenerResumenCategorias(operaciones, categorias)
+    const porMeses = obtenerResumenMeses(operaciones)
+    return { categorias: resumenCategorias, meses: { ...porMeses } }
+}
+
 // ACTUALIZACIÓN DE FECHA
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
