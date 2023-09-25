@@ -537,7 +537,7 @@ const obtenerTotalesPorCategoria = (operaciones) => {
 const obtenerTotalesPorMes = (operaciones) => {
     const totalesPorMes = {};
     operaciones.forEach((operacion) => {
-        const fechaCompleta = new Date(operacion.fecha);
+        const fechaCompleta = new Date(operacion.fecha + 'T00:00:00-03:00');
         const mes = `${fechaCompleta.getMonth() + 1}/${fechaCompleta.getFullYear()}`;
         const tipo = operacion.tipo.toLowerCase();
         const monto = operacion.monto;
