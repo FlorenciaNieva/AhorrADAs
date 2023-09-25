@@ -513,7 +513,7 @@ const obtenerTotalesPorCategoria = (operaciones) => {
 const obtenerTotalesPorMes = (operaciones) => {
     const totalesPorMes = {};
     operaciones.forEach((operacion) => {
-        const fechaCompleta = new Date(operacion.fecha);
+        const fechaCompleta = new Date(operacion.fecha + 'T00:00:00-03:00');
         const mes = `${fechaCompleta.getMonth() + 1}/${fechaCompleta.getFullYear()}`;
         const tipo = operacion.tipo.toLowerCase();
         const monto = operacion.monto;
@@ -557,7 +557,23 @@ const completarResumen = () => {
 
 // COMPLETA TOTALES POR CATEGORIAS DE LA SECCIÓN REPORTE
 const completarTotalesPorCategoria = () => {
+    $('#reporte-categorias').innerHTML = '';
     const reporte = obtenerTotalesPorCategoria(traerOperaciones());
+    $('#reporte-categorias').innerHTML = `
+        <div class="columns is-mobile">
+            <div class="column">
+                <h4 class="has-text-weight-semibold">Categoria</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Ganancias</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+            </div>
+        </div>`
     for (let item in reporte) {
         const itemReporte = document.createElement('div');
         itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
@@ -572,7 +588,7 @@ const completarTotalesPorCategoria = () => {
                 -$${reporte[item].gasto}
             </div>
             <div class="column has-text-right">
-                $${reporte[item].balance}
+                ${ reporte[item].balance < 0 ? '-' : '+' }$${Math.abs(reporte[item].balance)}
             </div>
         `;
         $('#reporte-categorias').append(itemReporte);
@@ -582,6 +598,22 @@ const completarTotalesPorCategoria = () => {
 // COMPLETA TOTALES POR MES DE LA SECCIÓN REPORTE
 const completarTotalesPorMes = () => {
     const reporte = obtenerTotalesPorMes(traerOperaciones());
+    $('#reporte-mes').innerHTML = '';
+    $('#reporte-mes').innerHTML = `
+        <div class="columns is-mobile">
+            <div class="column">
+                <h4 class="has-text-weight-semibold">Mes</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Ganancias</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+            </div>
+        </div>`
     for (let item in reporte) {
         const itemReporte = document.createElement('div');
         itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
@@ -596,7 +628,7 @@ const completarTotalesPorMes = () => {
                 -$${reporte[item].gasto}
             </div>
             <div class="column has-text-right">
-                $${reporte[item].balance}
+                ${ reporte[item].balance < 0 ? '-' : '+' }$${Math.abs(reporte[item].balance)}
             </div>
         `;
         $('#reporte-mes').append(itemReporte);
