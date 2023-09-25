@@ -316,13 +316,13 @@ const filtrarPorFechaMayorOIgualA = (fecha, operaciones) => {
 }
 // -------------------------- SELECT ORDENAR POR --------------------------
 //FECHA
-const ordernarPorFecha = (operaciones, orden) => {
+const ordenarPorFecha = (operaciones, orden) => {
     return [...operaciones].sort((a, b) => {
-        const fechaA = new Date(a.fecha)
-        const fechaB = new Date(b.fecha)
-        return orden === 'ASC'? fechaA.getTime() - fechaB.getTime() : fechaB.getTime() - fechaA.getTime();
-    })
-}
+        const fechaA = new Date(a.fecha);
+        const fechaB = new Date(b.fecha);
+        return orden === 'ASC' ? fechaB.getTime() - fechaA.getTime() : fechaA.getTime() - fechaB.getTime();
+    });
+};
 //MONTO
 const ordernarPorMonto = (operaciones, orden) => {
     return [...operaciones].sort((a, b) => {
@@ -355,43 +355,46 @@ const filtrarOperaciones = () => {
     const fecha = new Date($('#input-fecha').value.replace(/-/g, '/'));
     const orden = $('#selector-ordenar').value;
 
-    let operacionesFiltradas = [...operaciones];
+    let operaciones = traerOperaciones();
 
     if (tipo !== 'TODOS') {
-        operacionesFiltradas = filtrarPorTipo(tipo, operacionesFiltradas);
-        console.log(operacionesFiltradas, `1`);
+        console.log(operaciones);
+        operaciones = filtrarPorTipo(tipo, operaciones);
+        console.log(operaciones);
     }
 
     if (categoria !== 'Todas') {
-        operacionesFiltradas = filtrarPorCategoria(categoria, operacionesFiltradas);
-        console.log(operacionesFiltradas, `2`);
+        operaciones = filtrarPorCategoria(categoria, operaciones);
+        console.log(operaciones);
     }
 
-    operacionesFiltradas = filtrarPorFechaMayorOIgualA(fecha, operacionesFiltradas)
+    operaciones = filtrarPorFechaMayorOIgualA(fecha, operaciones)
+    console.log(operaciones);
 
     switch (orden) {
         case 'MAS-RECIENTES':
-            operacionesFiltradas = ordernarPorFecha(operacionesFiltradas, 'DESC')
+            operaciones = ordenarPorFecha(operaciones, 'DESC')
             break
         case 'MENOS-RECIENTES':
-            operacionesFiltradas = ordernarPorFecha(operacionesFiltradas, 'ASC')
+            operaciones = ordenarPorFecha(operaciones, 'ASC')
             break
         case 'MAYOR-MONTO':
-            operacionesFiltradas = ordernarPorMonto(operacionesFiltradas, 'DESC')
+            operaciones = ordernarPorMonto(operaciones, 'DESC')
             break
         case 'MENOR-MONTO':
-            operacionesFiltradas = ordernarPorMonto(operacionesFiltradas, 'ASC')
+            operaciones = ordernarPorMonto(operaciones, 'ASC')
             break
         case 'A/Z':
-            operacionesFiltradas = ordernarPorDescripcion(operacionesFiltradas, 'ASC')
+            operaciones = ordernarPorDescripcion(operaciones, 'ASC')
             break
         case 'Z/A':
-            operacionesFiltradas = ordernarPorDescripcion(operacionesFiltradas, 'DESC')
+            operaciones = ordernarPorDescripcion(operaciones, 'DESC')
             break
         default:
     }
-
-    completarOperaciones(operacionesFiltradas);
+    console.log(operaciones);
+    completarOperaciones(operaciones);
+    console.log(operaciones);
 }
 
 // SECCIÓN BALANCE ------------------------------
