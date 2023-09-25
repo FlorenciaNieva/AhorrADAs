@@ -9,14 +9,6 @@ const mostrarVista = (vistaAMostrar) => {
     $(`#${vistaAMostrar}`).classList.remove('is-hidden');
 };
 
-$('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
-
-$('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
-
-$('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
-
-$('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
-
 // MENU HAMBURGUESA DEL NAVBAR
 const toggleMenuHamburguesa = () => {
     $('.navbar-burger').classList.toggle('is-active');
@@ -25,8 +17,6 @@ const toggleMenuHamburguesa = () => {
     $('#botones-nav').classList.toggle('is-flex-direction-column');
     $('#botones-nav').classList.toggle('is-align-content-flex-start');
 }
-
-$('.navbar-burger').addEventListener('click', () => toggleMenuHamburguesa());
 
 window.addEventListener('resize', () => {
     if (window.innerWidth >= 1024) {
@@ -52,7 +42,13 @@ const toggleFiltros = () => {
     }
 }
 
-$('#toggle-filtros').addEventListener('click', () => toggleFiltros());
+// ACTUALIZACIÓN DE FECHA
+const fechaActualizada = () => {
+    const inputsFecha = $$('input[type="date"]');
+    inputsFecha.forEach((input) => {
+        input.valueAsDate = new Date();
+    });
+}
 
 // LOCAL STORAGE -------------------------------
 
@@ -140,11 +136,6 @@ const editCategory = (id) => {
     mostrarVista('seccion-categorias')
 };
 
-//BOTON PARA CANCELAR EDITAR CATEGORIAS
-$("#cancelar-categoria-boton").addEventListener(`click`, () => {
-    mostrarVista('seccion-categorias')
-})
-
 // ACTUALIZA LA LISTA CON LAS CATEGORIAS
 const actualizarVistas = (datos) => {
     listaCategorias(datos.categorias);
@@ -163,8 +154,6 @@ const agregarCategoria = () => {
     actualizarVistas(traerDatos());
     $("#categoria-input").value = "";
 }
-
-$("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
 
 // SE ELIMINA LA CATEGORIA
 const removeCategory = (id) => {
@@ -207,14 +196,6 @@ const agregraOperacion = () => {
     reestablecerOperacion();
     actualizarReportes();
 }
-
-$('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
-
-// BOTÓN DE CANCELAR NUEVA OPERACIÓN
-$('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
-    mostrarVista('seccion-balance');
-    reestablecerOperacion();
-})
 
 // COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
 const completarOperaciones = (operaciones) => {
@@ -307,11 +288,6 @@ const cargarDatosOperacion = (id) => {
         mostrarVista('seccion-balance');
     };
 };
-
-// BOTÓN DE CANCELAR EDITAR OPERACIÓN
-$('#boton-cancelar-editar-operacion').addEventListener('click', () => {
-    mostrarVista('seccion-balance');
-});  
 
 //ELIMINAR OPERACIONES
 const eliminarOperacion = (idOperacion) => {
@@ -579,7 +555,6 @@ const completarResumen = () => {
     vistaReporte();
 }
 
-
 // COMPLETA TOTALES POR CATEGORIAS DE LA SECCIÓN REPORTE
 const completarTotalesPorCategoria = () => {
     const reporte = obtenerTotalesPorCategoria(traerOperaciones());
@@ -634,16 +609,35 @@ const actualizarReportes = () => {
     completarTotalesPorCategoria();
 }  
 
-// ACTUALIZACIÓN DE FECHA
-const fechaActualizada = () => {
-    const inputsFecha = $$('input[type="date"]');
-    inputsFecha.forEach((input) => {
-        input.valueAsDate = new Date();
-    });
+// INICIALIZACIÓN -------------------------------
+
+const inicializarVistas = () => {
+    $('#boton-balance').addEventListener('click', () => mostrarVista('seccion-balance'));
+    $('#boton-categorias').addEventListener('click', () => mostrarVista('seccion-categorias'));
+    $('#boton-reportes').addEventListener('click', () => mostrarVista('seccion-reportes'));
+    $('#boton-nueva-operacion').addEventListener('click', () => mostrarVista('seccion-nueva-operacion'));
+    $('.navbar-burger').addEventListener('click', () => toggleMenuHamburguesa());
+    $('#toggle-filtros').addEventListener('click', () => toggleFiltros());
 }
 
-// INICIALIZACIÓN
+const inicializarCategorias = () => {
+    $("#cancelar-categoria-boton").addEventListener(`click`, () => mostrarVista('seccion-categorias'));
+    $("#agregar-categoria-boton").addEventListener("click", () => agregarCategoria());
+}
+
+const inicializarOperaciones = () => {
+    $('#agregar-operacion-boton').addEventListener('click', () => agregraOperacion());
+    $('#cancelar-agregar-operacion-boton').addEventListener('click', () => {
+        mostrarVista('seccion-balance');
+        reestablecerOperacion();
+    });
+    $('#boton-cancelar-editar-operacion').addEventListener('click', () => mostrarVista('seccion-balance'));  
+}
+
 const inicializarPagina = () => {
+    inicializarVistas();
+    inicializarCategorias();
+    inicializarOperaciones();
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
