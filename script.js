@@ -310,6 +310,8 @@ const filtrarPorCategoria = (idCategoria, operaciones) => {
 }
 // -------------------------- SELECT ORDENAR DESDE --------------------------
 const filtrarPorFechaMayorOIgualA = (fecha, operaciones) => {
+    console.log(fecha);
+    console.log(operaciones);
     return operaciones.filter((operacion) => {
         const fechaOperacion = new Date(operacion.fecha)
         return fechaOperacion.getTime() >= fecha.getTime()
@@ -677,7 +679,7 @@ const inicializarPagina = () => {
     //completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
     actualizarReportes();
-    inicializarBalance()
+    inicializarBalance();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
