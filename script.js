@@ -272,6 +272,7 @@ const editarOperacion = (id) => {
     completarOperaciones(operacionesActualizadas);
     subirDatos({ operaciones: operacionesActualizadas });
     actualizarBalance(traerOperaciones());
+    actualizarReportes();
 };
 
 // PASA LOS VALORES DE LA OPERACIÓN A LOS CAMPOS DE LA SECCIÓN EDITAR OPERACIÓN
