@@ -352,24 +352,21 @@ $("#selector-ordenar").addEventListener(`change`, () => filtrarOperaciones());
 const filtrarOperaciones = () => {
     const tipo = $('#selector-tipo').value;
     const categoria = $('#filtro-categorias-select').value;
-    const fecha = new Date($('#input-fecha').value.replace(/-/g, '/'));
+    const fechaString = $('#input-fecha').value;
+    const fecha = new Date(fechaString);
     const orden = $('#selector-ordenar').value;
 
     let operaciones = traerOperaciones();
 
     if (tipo !== 'TODOS') {
-        console.log(operaciones);
         operaciones = filtrarPorTipo(tipo, operaciones);
-        console.log(operaciones);
     }
 
     if (categoria !== 'Todas') {
         operaciones = filtrarPorCategoria(categoria, operaciones);
-        console.log(operaciones);
     }
 
     operaciones = filtrarPorFechaMayorOIgualA(fecha, operaciones)
-    console.log(operaciones);
 
     switch (orden) {
         case 'MAS-RECIENTES':
@@ -392,9 +389,8 @@ const filtrarOperaciones = () => {
             break
         default:
     }
-    console.log(operaciones);
+
     completarOperaciones(operaciones);
-    console.log(operaciones);
 }
 
 // SECCIÓN BALANCE ------------------------------
