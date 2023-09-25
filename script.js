@@ -345,16 +345,17 @@ const ordernarPorDescripcion = (operaciones, orden) => {
     });
 };
 
-$("#filtro-categorias-select").addEventListener(`change`, () => filtrarOperaciones());
-$("#selector-tipo").addEventListener(`change`, () => filtrarOperaciones());
-$("#input-fecha").addEventListener(`change`, () => filtrarOperaciones());
-$("#selector-ordenar").addEventListener(`change`, () => filtrarOperaciones());
+const inicializarBalance = () => {
+    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
+    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
+}
 
 const filtrarOperaciones = () => {
     const tipo = $('#selector-tipo').value;
     const categoria = $('#filtro-categorias-select').value;
-    const fechaString = $('#input-fecha').value;
-    const fecha = new Date(fechaString);
+    const fecha = new Date($('#input-fecha').value);
     const orden = $('#selector-ordenar').value;
 
     let operaciones = traerOperaciones();
@@ -673,9 +674,10 @@ const inicializarPagina = () => {
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
-    completarOperaciones(operaciones);
+    //completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
     actualizarReportes();
+    inicializarBalance()
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
