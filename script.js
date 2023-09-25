@@ -582,6 +582,7 @@ const completarResumen = () => {
 
 // COMPLETA TOTALES POR CATEGORIAS DE LA SECCIÓN REPORTE
 const completarTotalesPorCategoria = () => {
+    $('#reporte-categorias').innerHTML = '';
     const reporte = obtenerTotalesPorCategoria(traerOperaciones());
     for (let item in reporte) {
         const itemReporte = document.createElement('div');
@@ -607,6 +608,7 @@ const completarTotalesPorCategoria = () => {
 // COMPLETA TOTALES POR MES DE LA SECCIÓN REPORTE
 const completarTotalesPorMes = () => {
     const reporte = obtenerTotalesPorMes(traerOperaciones());
+    $('#reporte-mes').innerHTML = '';
     for (let item in reporte) {
         const itemReporte = document.createElement('div');
         itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
