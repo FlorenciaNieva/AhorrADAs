@@ -323,7 +323,7 @@ const ordenarPorFecha = (operaciones, orden) => {
     return [...operaciones].sort((a, b) => {
         const fechaA = new Date(a.fecha);
         const fechaB = new Date(b.fecha);
-        return orden === 'ASC' ? fechaB.getTime() - fechaA.getTime() : fechaA.getTime() - fechaB.getTime();
+        return orden === 'ASC' ? fechaA.getTime() - fechaB.getTime() : fechaB.getTime() - fechaA.getTime();
     });
 };
 //MONTO
