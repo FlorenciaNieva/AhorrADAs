@@ -584,6 +584,21 @@ const completarResumen = () => {
 const completarTotalesPorCategoria = () => {
     $('#reporte-categorias').innerHTML = '';
     const reporte = obtenerTotalesPorCategoria(traerOperaciones());
+    $('#reporte-categorias').innerHTML = `
+        <div class="columns is-mobile">
+            <div class="column">
+                <h4 class="has-text-weight-semibold">Categoria</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Ganancias</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+            </div>
+        </div>`
     for (let item in reporte) {
         const itemReporte = document.createElement('div');
         itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
@@ -609,6 +624,21 @@ const completarTotalesPorCategoria = () => {
 const completarTotalesPorMes = () => {
     const reporte = obtenerTotalesPorMes(traerOperaciones());
     $('#reporte-mes').innerHTML = '';
+    $('#reporte-mes').innerHTML = `
+        <div class="columns is-mobile">
+            <div class="column">
+                <h4 class="has-text-weight-semibold">Mes</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Ganancias</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Gastos</h4>
+            </div>
+            <div class="column">
+                <h4 class="has-text-weight-semibold has-text-right">Balance</h4>
+            </div>
+        </div>`
     for (let item in reporte) {
         const itemReporte = document.createElement('div');
         itemReporte.classList.add('columns', 'is-vcentered', 'is-mobile');
