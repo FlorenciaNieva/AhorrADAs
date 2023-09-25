@@ -569,7 +569,7 @@ const completarResumen = () => {
     $('#categoria-mayor-gasto-monto').innerText = `-$${reporte.categorias.mayorGasto.monto}`
     // Categoría mayor balance
     $('#categoria-mayor-balance').innerText = obtenerCategoria( reporte.categorias.mayorBalance.categoria, traerCategorias() ).nombre
-    $('#categoria-mayor-balance-monto').innerText = `$${Math.abs(reporte.categorias.mayorBalance.monto)}`
+    $('#categoria-mayor-balance-monto').innerText = `$${reporte.categorias.mayorBalance.monto}`
     // Mes mayor ganancia
     $('#mes-mayor-ganancia').innerText = reporte.meses.mayorGanancia.fecha
     $('#mes-mayor-ganancia-monto').innerText = `+$${reporte.categorias.mayorGanancia.monto}`
@@ -613,7 +613,7 @@ const completarTotalesPorCategoria = () => {
                 -$${reporte[item].gasto}
             </div>
             <div class="column has-text-right">
-                $${Math.abs(reporte[item].balance)}
+                ${ reporte[item].balance < 0 ? '-' : '+' }$${Math.abs(reporte[item].balance)}
             </div>
         `;
         $('#reporte-categorias').append(itemReporte);
@@ -653,7 +653,7 @@ const completarTotalesPorMes = () => {
                 -$${reporte[item].gasto}
             </div>
             <div class="column has-text-right">
-                $${Math.abs(reporte[item].balance)}
+                ${ reporte[item].balance < 0 ? '-' : '+' }$${Math.abs(reporte[item].balance)}
             </div>
         `;
         $('#reporte-mes').append(itemReporte);
