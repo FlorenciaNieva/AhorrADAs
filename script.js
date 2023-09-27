@@ -348,10 +348,10 @@ const ordernarPorDescripcion = (operaciones, orden) => {
 };
 
 const inicializarBalance = () => {
-    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
-    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
-    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
-    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
+    $("#filtro-categorias-select").addEventListener('change', filtrarOperaciones());
+    $("#selector-tipo").addEventListener('change', filtrarOperaciones());
+    $("#input-fecha").addEventListener('change', filtrarOperaciones());
+    $("#selector-ordenar").addEventListener('change', filtrarOperaciones());
 }
 
 const filtrarOperaciones = () => {
