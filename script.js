@@ -190,11 +190,11 @@ const agregraOperacion = () => {
     }
     operaciones.push(nuevaOperacion)
     subirDatos ({ operaciones });
-    completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
     reestablecerOperacion();
     actualizarReportes();
+    filtrarOperaciones();
 }
 
 // COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
@@ -347,12 +347,10 @@ const ordernarPorDescripcion = (operaciones, orden) => {
     });
 };
 
-const inicializarBalance = () => {
-    $("#filtro-categorias-select").addEventListener('change', filtrarOperaciones());
-    $("#selector-tipo").addEventListener('change', filtrarOperaciones());
-    $("#input-fecha").addEventListener('change', filtrarOperaciones());
-    $("#selector-ordenar").addEventListener('change', filtrarOperaciones());
-}
+    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
+    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
 
 const filtrarOperaciones = () => {
     const tipo = $('#selector-tipo').value;
@@ -395,6 +393,7 @@ const filtrarOperaciones = () => {
     }
 
     completarOperaciones(operaciones);
+    actualizarBalance(operaciones)
 }
 
 // SECCIÓN BALANCE ------------------------------
@@ -676,10 +675,9 @@ const inicializarPagina = () => {
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
-    //completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
     actualizarReportes();
-    inicializarBalance();
+    filtrarOperaciones();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
