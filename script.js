@@ -190,11 +190,11 @@ const agregraOperacion = () => {
     }
     operaciones.push(nuevaOperacion)
     subirDatos ({ operaciones });
+    completarOperaciones( operaciones );
     mostrarVista('seccion-balance');
     actualizarBalance(traerOperaciones());
     reestablecerOperacion();
     actualizarReportes();
-    filtrarOperaciones();
 }
 
 // COMPLETA LAS OPERACIONES EN EL APARTADO CON-OPERACIONES
@@ -675,9 +675,9 @@ const inicializarPagina = () => {
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
+    completarOperaciones(operaciones);
     actualizarBalance(traerOperaciones());
     actualizarReportes();
-    filtrarOperaciones();
 }
 
 if (!traerCategorias() || traerCategorias().length === 0) {
