@@ -310,6 +310,8 @@ const filtrarPorCategoria = (idCategoria, operaciones) => {
 }
 // -------------------------- SELECT ORDENAR DESDE --------------------------
 const filtrarPorFechaMayorOIgualA = (fecha, operaciones) => {
+    console.log(fecha);
+    console.log(operaciones);
     return operaciones.filter((operacion) => {
         const fechaOperacion = new Date(operacion.fecha)
         return fechaOperacion.getTime() >= fecha.getTime()
@@ -321,7 +323,7 @@ const ordenarPorFecha = (operaciones, orden) => {
     return [...operaciones].sort((a, b) => {
         const fechaA = new Date(a.fecha);
         const fechaB = new Date(b.fecha);
-        return orden === 'ASC' ? fechaB.getTime() - fechaA.getTime() : fechaA.getTime() - fechaB.getTime();
+        return orden === 'ASC' ? fechaA.getTime() - fechaB.getTime() : fechaB.getTime() - fechaA.getTime();
     });
 };
 //MONTO
@@ -345,16 +347,15 @@ const ordernarPorDescripcion = (operaciones, orden) => {
     });
 };
 
-$("#filtro-categorias-select").addEventListener(`change`, () => filtrarOperaciones());
-$("#selector-tipo").addEventListener(`change`, () => filtrarOperaciones());
-$("#input-fecha").addEventListener(`change`, () => filtrarOperaciones());
-$("#selector-ordenar").addEventListener(`change`, () => filtrarOperaciones());
+    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
+    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
 
 const filtrarOperaciones = () => {
     const tipo = $('#selector-tipo').value;
     const categoria = $('#filtro-categorias-select').value;
-    const fechaString = $('#input-fecha').value;
-    const fecha = new Date(fechaString);
+    const fecha = new Date($('#input-fecha').value);
     const orden = $('#selector-ordenar').value;
 
     let operaciones = traerOperaciones();
@@ -392,6 +393,7 @@ const filtrarOperaciones = () => {
     }
 
     completarOperaciones(operaciones);
+    actualizarBalance(operaciones)
 }
 
 // SECCIÓN BALANCE ------------------------------
