@@ -297,6 +297,7 @@ const eliminarOperacion = (idOperacion) => {
     subirDatos({ operaciones: operacionesActualizadas });
     completarOperaciones(operacionesActualizadas);
     actualizarBalance(traerOperaciones());
+    actualizarReportes();
 }
 
 // SECCION DE FILTROS
