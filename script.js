@@ -46,7 +46,9 @@ const toggleFiltros = () => {
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
     inputsFecha.forEach((input) => {
-        input.valueAsDate = new Date();
+        if (input.id !== 'input-fecha') {
+            input.valueAsDate = new Date();
+        }
     });
 }
 
@@ -347,11 +349,6 @@ const ordernarPorDescripcion = (operaciones, orden) => {
         return 0;
     });
 };
-
-    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
-    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
-    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
-    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
 
 const filtrarOperaciones = () => {
     const tipo = $('#selector-tipo').value;
@@ -693,10 +690,18 @@ const inicializarOperaciones = () => {
     $('#boton-cancelar-editar-operacion').addEventListener('click', () => mostrarVista('seccion-balance'));  
 }
 
+const inicializarFiltros = () => {
+    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
+    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
+}
+
 const inicializarPagina = () => {
     inicializarVistas();
     inicializarCategorias();
     inicializarOperaciones();
+    inicializarFiltros();
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
