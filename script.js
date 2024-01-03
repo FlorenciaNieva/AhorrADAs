@@ -348,11 +348,6 @@ const ordernarPorDescripcion = (operaciones, orden) => {
     });
 };
 
-    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
-    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
-    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
-    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
-
 const filtrarOperaciones = () => {
     const tipo = $('#selector-tipo').value;
     const categoria = $('#filtro-categorias-select').value;
@@ -693,10 +688,18 @@ const inicializarOperaciones = () => {
     $('#boton-cancelar-editar-operacion').addEventListener('click', () => mostrarVista('seccion-balance'));  
 }
 
+const inicializarFiltros = () => {
+    $("#filtro-categorias-select").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-tipo").addEventListener('change', () => filtrarOperaciones());
+    $("#input-fecha").addEventListener('change', () => filtrarOperaciones());
+    $("#selector-ordenar").addEventListener('change', () => filtrarOperaciones());
+}
+
 const inicializarPagina = () => {
     inicializarVistas();
     inicializarCategorias();
     inicializarOperaciones();
+    inicializarFiltros();
     fechaActualizada();
     llenarSelect(categorias);
     listaCategorias(categorias);
