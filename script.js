@@ -548,6 +548,18 @@ const obtenerMesMayorGanancia = () => {
     return { monto: mesMayorGanancia, fecha: fechaMesMayorGanancia };
 }
 
+const obtenerMesMayorGasto = () => {
+    const reporte = obtenerTotalesPorMes(traerOperaciones());
+    let gastoMeses = [];
+    for (let item in reporte) {
+        gastoMeses.push({monto: reporte[item].gasto, fecha: item})
+    }
+    const montoGastoMeses = gastoMeses.map(gastoMes => gastoMes.monto);
+    const mesMayorGasto = Math.max(...montoGastoMeses);
+    const fechaMesMayorGasto = gastoMeses.find(gastoMes => gastoMes.monto === mesMayorGasto)?.fecha;
+    return { monto: mesMayorGasto, fecha: fechaMesMayorGasto };
+}
+
 // COMPLETA EL RESUMEN DE LA SECCIÓN REPORTE
 const completarResumen = () => {
     const reporte = obtenerResumenes(traerOperaciones(), traerCategorias());
@@ -564,8 +576,8 @@ const completarResumen = () => {
     $('#mes-mayor-ganancia').innerText = obtenerMesMayorGanancia().fecha;
     $('#mes-mayor-ganancia-monto').innerText = `+$${obtenerMesMayorGanancia().monto}`;
     // Mes mayor gasto
-    $('#mes-mayor-gasto').innerText = reporte.meses.mayorGasto.fecha
-    $('#mes-mayor-gasto-monto').innerText = `-$${reporte.meses.mayorGasto.monto}`
+    $('#mes-mayor-gasto').innerText = obtenerMesMayorGasto().fecha;
+    $('#mes-mayor-gasto-monto').innerText = `-$${obtenerMesMayorGasto().monto}`;
     vistaReporte();
 }
 
