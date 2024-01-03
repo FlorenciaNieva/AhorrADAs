@@ -46,7 +46,9 @@ const toggleFiltros = () => {
 const fechaActualizada = () => {
     const inputsFecha = $$('input[type="date"]');
     inputsFecha.forEach((input) => {
-        input.valueAsDate = new Date();
+        if (input.id !== 'input-fecha') {
+            input.valueAsDate = new Date();
+        }
     });
 }
 
